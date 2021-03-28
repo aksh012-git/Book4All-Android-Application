@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">semester_6</string>
+    <string name="title_activity_nav">Books4All</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="detail">Profile Detail</string>
+    <string name="coreteam">Core Team</string>
+    <string name="mycolor">#3aa8c1</string>
+    <string name="address">Add your Address</string>
+    <string name="zipcode">Zip Code</string>
+    <string name="loginEmail">Enter Email</string>
+    <string name="loginPass">Enter Password</string>
+    <string name="description">Don\'t have account?</string>
+    <string name="signup">SignUp</string>
+    <string name="name">Enter Name</string>
+    <string name="phone">Phone</string>
+    <string name="city">City</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="conform">Conform Password</string>
+    <string name="profile">PROFILE</string>
+    <string name="desh">__________________________________</string>
+    <string name="personal">Personal Information</string>
+    <string name="full_name">Full Name</string>
+    <string name="aksh">Aksh Maradiya Jiteshbhai</string>
+    <string name="number">9712891011</string>
+    <string name="indian">+91</string>
+    <string name="email_fach">akshmaradiya@gmail.com</string>
+    <string name="mvr">Manavadar</string>
+    <string name="logout">Logout</string>
+    <string name="baccktohome">Home</string>
+    <string name="UplodeDetails">Upload Details</string>
+    <string name="authorName">Author Name</string>
+    <string name="bookname">Book Name</string>
+    <string name="sellingprice">Selling Price(₹)</string>
+    <string name="rentingprice">Renting Price(₹)</string>
+    <string name="booktype">Book Type</string>
+    <string name="renting">Renting</string>
+    <string name="uplode">Upload</string>
+    <string name="next">Next</string>
+    <string name="author">JWB Douglas</string>
+    <string name="type">educational</string>
+    <string name="sellprice">3000</string>
+    <string name="rentprice">500</string>
+    <string name="upload">Upload</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="uploadImg">Click and Upload Book Image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

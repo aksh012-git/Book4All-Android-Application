@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#3aa8c1"
+    android:padding="30dp"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Books4All"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textColor="#fff"
+        android:layout_marginTop="10dp"
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="60dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="25dp">
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LogIn"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/loginemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email"
+            android:layout_marginTop="100dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginLeft="20dp"
+            android:drawableRight="@drawable/ic_baseline_person_24"
+            android:layout_marginRight="20dp" />
+
+        <EditText
+            android:id="@+id/loginpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password"
+            android:layout_marginTop="200dp"
+            android:inputType="textPassword"
+            android:drawableRight="@drawable/ic_baseline_vpn_key_24"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <Button
+            android:id="@+id/loginbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginBottom="20dp"
+            android:text="login"
+            android:textSize="20dp" />
+
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="170dp"
+            android:visibility="gone"
+            android:id="@+id/proBarLogin"/>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/logintosignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="230dp"
+        android:layout_marginTop="40dp"
+        android:text="signup" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have account then"
+        android:textSize="20dp"
+        android:layout_marginTop="-40dp"
+        android:layout_marginLeft="10dp"/>
+
+
+</LinearLayout>

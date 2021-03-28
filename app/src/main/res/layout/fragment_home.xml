@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="false"
+    android:focusableInTouchMode="true"
+    tools:context=".ui.home.HomeFragment">
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:queryHint="Search"
+        android:iconifiedByDefault="false" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/sellButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/sellbutton"
+        android:text="sell"
+
+        android:layout_alignBottom="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textSize="15sp"/>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#3aa8c1"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" />
+
+
+
+</RelativeLayout>
