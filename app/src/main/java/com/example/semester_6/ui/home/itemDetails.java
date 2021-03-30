@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.semester_6.MainActivity;
 import com.example.semester_6.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -71,7 +73,7 @@ public class itemDetails extends AppCompatActivity {
            }
            @Override
            public void onCancelled(@NonNull DatabaseError error) {
-
+               Toast.makeText(itemDetails.this, "Error:"+error, Toast.LENGTH_LONG).show();
            }
        });
 
@@ -91,7 +93,7 @@ public class itemDetails extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(itemDetails.this, "Error:"+error, Toast.LENGTH_LONG).show();
             }
         });
     }

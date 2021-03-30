@@ -112,7 +112,7 @@ public class sellPage extends AppCompatActivity {
         String key = reference.getKey();
         if(!myUID.isEmpty()) {
             HashMap<String, String> map = new HashMap<>();
-            map.put("bookname", bookname);
+            map.put("bookname", bookname.toLowerCase());
             map.put("authorname", authorname);
             map.put("booktype", booktype);
             map.put("rentingprice", rentingprice);

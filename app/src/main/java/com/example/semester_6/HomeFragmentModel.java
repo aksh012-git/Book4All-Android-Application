@@ -33,6 +33,9 @@ public class HomeFragmentModel
     }
 
     public String getBookname() {
+        String y = bookname.substring(0,1);
+        String x = bookname.substring(1,bookname.length());
+        bookname = y.toUpperCase()+x;
         return bookname;
     }
 

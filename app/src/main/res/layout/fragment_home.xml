@@ -8,17 +8,25 @@
     android:focusableInTouchMode="true"
     tools:context=".ui.home.HomeFragment">
 
+
     <SearchView
+        android:id="@+id/searchHome"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:queryHint="Search"
-        android:iconifiedByDefault="false" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:queryHint="Search bookname hear..."
+        android:iconifiedByDefault="false"
+        app:showAsAction="ifRoom|withText"
+        android:background="@drawable/searchview_background"
+        android:queryBackground="@android:color/transparent"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="60dp">
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="60dp"
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recview"
