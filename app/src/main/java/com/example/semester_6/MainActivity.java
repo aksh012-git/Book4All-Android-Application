@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(emailLjava1,passwordLjava1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                Toast.makeText(MainActivity.this, "Authentication success.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Authentication success..", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, nav.class));
                 bar.setVisibility(View.INVISIBLE);
                 finish();

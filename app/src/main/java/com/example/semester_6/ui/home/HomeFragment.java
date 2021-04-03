@@ -3,6 +3,7 @@ package com.example.semester_6.ui.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,13 +24,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.semester_6.History;
+import com.example.semester_6.MainActivity;
 import com.example.semester_6.R;
 import com.example.semester_6.HomeFragmentModel;
 import com.example.semester_6.HomeFragmentMyViewHolder;
 import com.example.semester_6.sellPage;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
@@ -36,6 +47,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recView;
     private FirebaseRecyclerOptions<HomeFragmentModel> options;
     private FirebaseRecyclerAdapter<HomeFragmentModel, HomeFragmentMyViewHolder> adapter;
+    private FirebaseAuth mAuth;
     SearchView searchView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,8 +69,14 @@ public class HomeFragment extends Fragment {
         searchView = root.findViewById(R.id.searchHome);
 //        recView.setHasFixedSize(true);
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String myUIDHome = currentUser.getUid();
 
 
+
+
+//firebase Ui options--------------------------------------------
         options = new  FirebaseRecyclerOptions.Builder<HomeFragmentModel>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("books4All").child("booksDetails"), HomeFragmentModel.class)
                 .build();
@@ -80,7 +98,6 @@ public class HomeFragment extends Fragment {
                     public void onClick(View view) {
                         //Search view clear Focus
                         searchView.clearFocus();
-                        searchView.setQuery("", false);
                         searchView.setFocusable(false);
                         Intent intent = new Intent(getActivity(),itemDetails.class);
                         intent.putExtra("key",mykey);
@@ -89,6 +106,14 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
+                holder.myCart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        prossecctomycart(model.getKey(),model.getMyUID(),model.getBookname(),model.getAuthorname(),model.getBooktype(),model.getRentingprice(),
+                                model.getSellingprice(),model.getAddress(),model.getZipcode(),model.getImgUrl(),myUIDHome);
+
+                    }
+                });
             }
 
             @NonNull
@@ -123,6 +148,24 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    private void prossecctomycart(String key, String myUID, String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String imgUrl,String myUIDHome) {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference reference = firebaseDatabase.getReference("books4All").child("Cart").child(myUIDHome);
+        HashMap<String,String> map = new HashMap<>();
+        map.put("bookname", bookname.toLowerCase());
+        map.put("authorname", authorname);
+        map.put("booktype", booktype);
+        map.put("rentingprice", rentingprice);
+        map.put("sellingprice", sellingprice);
+        map.put("address", address);
+        map.put("zipcode", zipcode);
+        map.put("myUID", myUID);
+        map.put("key", key);
+        map.put("imgUrl",imgUrl);
+        reference.child(key).setValue(map);
+        Toast.makeText(getContext(), "Saved in 'MyCart'", Toast.LENGTH_LONG).show();
+    }
+
 
     private void prosseccofsearch(String s) {
         options = new  FirebaseRecyclerOptions.Builder<HomeFragmentModel>()
@@ -147,7 +190,7 @@ public class HomeFragment extends Fragment {
                     public void onClick(View view) {
                         //Search view clear Focus
                         searchView.clearFocus();
-                        searchView.setQuery("", false);
+                        searchView.setQuery(null, true);
                         searchView.setFocusable(false);
                         Intent intent = new Intent(getActivity(),itemDetails.class);
                         intent.putExtra("key",mykey);
@@ -155,7 +198,16 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+                holder.myCart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        String myUIDHome = currentUser.getUid();
+                        prossecctomycart(model.getKey(),model.getMyUID(),model.getBookname(),model.getAuthorname(),model.getBooktype(),model.getRentingprice(),
+                                model.getSellingprice(),model.getAddress(),model.getZipcode(),model.getImgUrl(),myUIDHome);
 
+                    }
+                });
             }
 
             @NonNull

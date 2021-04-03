@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Semester_6">
+        <activity android:name=".myCart"></activity>
         <activity android:name=".ui.home.itemDetails" />
         <activity android:name=".button_login" />
         <activity android:name=".registrationpage" />

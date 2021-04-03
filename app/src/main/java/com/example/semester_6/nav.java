@@ -2,6 +2,7 @@ package com.example.semester_6;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -92,22 +93,16 @@ public class nav extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.nav, menu);
-//        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
-//            @Override
-//            public boolean onMenuItemActionExpand(MenuItem menuItem) {
-//                Toast.makeText(nav.this, "Search bara Expand.", Toast.LENGTH_SHORT).show();
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-//                Toast.makeText(nav.this, "Search bar Collapse.", Toast.LENGTH_SHORT).show();
-//                return true;
-//            }
-//        };
-//        menu.findItem(R.id.action_search).setOnActionExpandListener(onActionExpandListener);
+        MenuInflater inflater  = getMenuInflater();
+        inflater.inflate(R.menu.nav, menu);
+        menu.findItem(R.id.my_cart).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                startActivity(new Intent(nav.this,myCart.class));
+                return true;
+            }
+        });
+
         return true;
     }
 
