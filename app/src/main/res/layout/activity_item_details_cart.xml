@@ -5,17 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    tools:context=".ui.home.itemDetails">
+    tools:context=".itemDetails_cart">
 
     <ImageView
-        android:id="@+id/bookImgfullDetails"
+        android:id="@+id/bookImgfullDetailsCart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/bookNameFullDetails"
+        android:id="@+id/bookNameFullDetailsCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="bookNameFullDetails"
@@ -32,47 +31,47 @@
         android:layout_marginRight="10dp"
         android:background="#53354a">
 
-    <TextView
-        android:id="@+id/bookAuthorFullDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="bookAuthorFullDetails" />
+        <TextView
+            android:id="@+id/bookAuthorFullDetailsCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="bookAuthorFullDetails" />
 
-    <TextView
-        android:id="@+id/bookTypeFullDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="bookTypeFullDetails" />
+        <TextView
+            android:id="@+id/bookTypeFullDetailsCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="bookTypeFullDetails" />
 
-    <TextView
-        android:id="@+id/bookRentingFullDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="bookRentingFullDetails" />
+        <TextView
+            android:id="@+id/bookRentingFullDetailsCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="bookRentingFullDetails" />
 
-    <TextView
-        android:id="@+id/bookSellingFullDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="bookSellingFullDetails" />
+        <TextView
+            android:id="@+id/bookSellingFullDetailsCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="bookSellingFullDetails" />
 
-    <TextView
-        android:id="@+id/bookAdressFullDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="bookAdressFullDetails" />
+        <TextView
+            android:id="@+id/bookAdressFullDetailsCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="bookAdressFullDetails" />
 
-    <TextView
-        android:id="@+id/bookZipcodeFullDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="bookZipcodeFullDetails" />
+        <TextView
+            android:id="@+id/bookZipcodeFullDetailsCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="bookZipcodeFullDetails" />
 
     </LinearLayout>
 
@@ -84,7 +83,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-       android:background="#53354a">
+        android:background="#53354a">
 
         <TextView
             android:layout_width="match_parent"
@@ -96,22 +95,22 @@
             />
 
         <TextView
-            android:id="@+id/userName"
+            android:id="@+id/userNameCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:text="TextView"
-           />
+            />
 
         <TextView
-            android:id="@+id/userEmail"
+            android:id="@+id/userEmailCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/userPhone"
+            android:id="@+id/userPhoneCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff"
@@ -126,7 +125,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp">
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonCart"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -134,7 +133,7 @@
             android:layout_marginRight="5dp"/>
 
         <Button
-            android:id="@+id/chatWp"
+            android:id="@+id/chatWpCart"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -153,4 +152,5 @@
             android:layout_height="wrap_content"
             android:text="Add To WishList" />
     </LinearLayout>
+
 </LinearLayout>

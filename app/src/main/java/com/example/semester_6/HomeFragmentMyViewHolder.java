@@ -17,14 +17,15 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class HomeFragmentMyViewHolder extends RecyclerView.ViewHolder
 {
     public TextView bookname;
-    public ImageView imgUrl,myCart;
+    public ImageView imgUrl,myCartAdd,successFull;
     public View view;
     public HomeFragmentMyViewHolder(@NonNull View itemView)
     {
         super(itemView);
         bookname = itemView.findViewById(R.id.bookname);
         imgUrl = itemView.findViewById(R.id.bookImg);
-        myCart = itemView.findViewById(R.id.myCart);
+        myCartAdd = itemView.findViewById(R.id.myCart);
+        successFull = itemView.findViewById(R.id.successFullAdd);
         view = itemView;
     }
 }

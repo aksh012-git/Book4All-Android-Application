@@ -21,6 +21,13 @@
                 android:id="@+id/bookImgH"
                 android:layout_width="match_parent"
                 android:layout_height="120dp" />
+            <ImageView
+                android:id="@+id/deleteInSold"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/delete"
+                android:layout_gravity="right"
+                android:layout_marginTop="-120dp"/>
         </LinearLayout>
 
         <LinearLayout

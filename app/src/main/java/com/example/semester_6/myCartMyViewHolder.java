@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 public class myCartMyViewHolder extends RecyclerView.ViewHolder
 {
     public TextView booknameCart;
-    public ImageView imgUrlCart;
+    public ImageView imgUrlCart,deleteincart;
     public View viewCart;
     public myCartMyViewHolder(@NonNull View itemView)
     {
         super(itemView);
         booknameCart = itemView.findViewById(R.id.booknameCart);
         imgUrlCart = itemView.findViewById(R.id.bookImgCart);
+        deleteincart = itemView.findViewById(R.id.deleteInCart);
         viewCart = itemView;
     }
 }

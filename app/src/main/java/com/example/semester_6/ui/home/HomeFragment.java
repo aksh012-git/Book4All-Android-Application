@@ -1,4 +1,4 @@
-package com.example.semester_6.ui.home;
+    package com.example.semester_6.ui.home;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-                holder.myCart.setOnClickListener(new View.OnClickListener() {
+                holder.myCartAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         prossecctomycart(model.getKey(),model.getMyUID(),model.getBookname(),model.getAuthorname(),model.getBooktype(),model.getRentingprice(),
@@ -198,7 +198,7 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-                holder.myCart.setOnClickListener(new View.OnClickListener() {
+                holder.myCartAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         FirebaseUser currentUser = mAuth.getCurrentUser();

@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.semester_6.ui.home.itemDetails;
@@ -17,7 +20,15 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.okhttp.internal.DiskLruCache;
+
+import javax.xml.namespace.QName;
 
 public class myCart extends AppCompatActivity {
     RecyclerView recViewCart;
@@ -48,6 +59,25 @@ public class myCart extends AppCompatActivity {
 
                 holder.booknameCart.setText(bookNameHome);
                 Glide.with(holder.imgUrlCart.getContext()).load(model.getImgUrl()).into(holder.imgUrlCart);
+
+                holder.viewCart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(myCart.this,itemDetails_cart.class);
+                        intent.putExtra("key",model.getKey());
+                        intent.putExtra("myUID",myUIDHomeCart);
+                        intent.putExtra("myUIDForUser",model.getMyUID());
+                        startActivity(intent);
+                    }
+                });
+                holder.deleteincart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference reference = firebaseDatabase.getReference("books4All").child("Cart").child(myUIDHomeCart);
+                        reference.child(model.getKey()).removeValue();
+                    }
+                });
             }
 
             @NonNull

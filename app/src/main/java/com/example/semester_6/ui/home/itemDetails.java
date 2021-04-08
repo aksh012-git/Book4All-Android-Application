@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,11 +23,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.URI;
+
 public class itemDetails extends AppCompatActivity {
     private TextView bookNameFullDetailsjava,bookAuthorFullDetailsjava,bookTypeFullDetailsjava,userNameJava,userEmailJava,userPhoneJava,
             bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava;
     private Intent intent;
-    ImageView bookimg;
+    private ImageView bookimg;
+    private Button chatBtn;
+    private   String userPhone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +48,8 @@ public class itemDetails extends AppCompatActivity {
         userEmailJava = findViewById(R.id.userEmail);
         userPhoneJava = findViewById(R.id.userPhone);
         bookimg = findViewById(R.id.bookImgfullDetails);
+
+        chatBtn = findViewById(R.id.chatWp);
 
         intent = new Intent(getIntent());
         String mykey = intent.getStringExtra("key");
@@ -76,7 +85,6 @@ public class itemDetails extends AppCompatActivity {
                Toast.makeText(itemDetails.this, "Error:"+error, Toast.LENGTH_LONG).show();
            }
        });
-
         DatabaseReference reference2 =  firebaseDatabase.getReference("books4All").child("userData").child(MyUID);
         reference2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -84,7 +92,7 @@ public class itemDetails extends AppCompatActivity {
                 if (snapshot.exists()){
                     String userName = snapshot.child("name").getValue(String.class);
                     String userEmail = snapshot.child("email").getValue(String.class);
-                    String userPhone = snapshot.child("phone").getValue(String.class);
+                    userPhone = snapshot.child("phone").getValue(String.class);
                     userNameJava.setText(userName);
                     userEmailJava.setText(userEmail);
                     userPhoneJava.setText(userPhone);
@@ -96,5 +104,28 @@ public class itemDetails extends AppCompatActivity {
                 Toast.makeText(itemDetails.this, "Error:"+error, Toast.LENGTH_LONG).show();
             }
         });
+
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean insalled = appInstallorNot("com.whatsapp");
+                if (insalled){
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+userPhone));
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(itemDetails.this, "whatsapp not!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private boolean appInstallorNot(String s) {
+        PackageManager packageManager = getPackageManager();
+        boolean app_installed;
+        packageManager.getPackageArchiveInfo(s, PackageManager.GET_ACTIVITIES);
+        app_installed  = true;
+        return app_installed;
     }
 }
