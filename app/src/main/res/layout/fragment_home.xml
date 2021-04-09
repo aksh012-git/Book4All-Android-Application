@@ -15,9 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:queryHint="Search bookname hear..."
+        android:queryHint="@string/searchHint"
         android:iconifiedByDefault="false"
         app:showAsAction="ifRoom|withText"
+        android:textColor="@color/cardview_dark_background"
+        android:searchIcon="@drawable/ic_baseline_search_24"
         android:background="@drawable/searchview_background"
         android:queryBackground="@android:color/transparent"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>

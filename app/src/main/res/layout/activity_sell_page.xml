@@ -93,6 +93,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:ems="10"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edittext_shap"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:layout_marginBottom="10dp"
                         android:hint="@string/bookname"
                         android:inputType="textPersonName" />
                     <EditText
@@ -102,6 +108,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:ems="10"
+                        android:background="@drawable/edittext_shap"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:layout_marginBottom="10dp"
                         android:hint="@string/authorName"
                         android:inputType="textPersonName" />
 
@@ -112,6 +123,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:ems="10"
+                        android:background="@drawable/edittext_shap"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:layout_marginBottom="10dp"
                         android:hint="@string/booktype"
                         android:inputType="textPersonName" />
 
@@ -123,6 +139,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:ems="10"
+                        android:background="@drawable/edittext_shap"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp"
+                        android:textColorHint="@color/black"
                         android:hint="@string/rentingprice"
                         android:inputType="textPersonName" />
 
@@ -132,7 +153,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
                         android:ems="10"
+                        android:background="@drawable/edittext_shap"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
                         android:hint="@string/sellingprice" />
 
                     <EditText
@@ -142,6 +168,10 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:ems="10"
+                        android:layout_marginBottom="10dp"                        android:background="@drawable/edittext_shap"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
                         android:hint="@string/address" />
 
                     <EditText
@@ -151,6 +181,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:ems="10"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/edittext_shap"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
                         android:hint="@string/zipcode" />
 
                     <Button

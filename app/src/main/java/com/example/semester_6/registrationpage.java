@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,11 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class registrationpage extends AppCompatActivity {
-    Button gohomesigupjava,signuptologin;
+    private ImageView gohomesigupjava;
     EditText namesignupjava,emailsignupjava,passwordsignupjava,conformpasswordsignupjava,phonesignupjava;
     private ProgressBar bar;
     //create auth var
     private FirebaseAuth mAuth;
+    private TextView signuptologin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

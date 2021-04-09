@@ -3,6 +3,7 @@
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -74,8 +75,7 @@ public class HomeFragment extends Fragment {
         String myUIDHome = currentUser.getUid();
 
 
-
-
+        searchView.setQueryHint(Html.fromHtml("<font color = #b4a5a5>" + getResources().getString(R.string.searchHint) + "</font>"));
 //firebase Ui options--------------------------------------------
         options = new  FirebaseRecyclerOptions.Builder<HomeFragmentModel>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("books4All").child("booksDetails"), HomeFragmentModel.class)
