@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".History">
+    tools:context=".mysoldbook">
 
     <androidx.recyclerview.widget.RecyclerView
         android:background="#FFFFFF"

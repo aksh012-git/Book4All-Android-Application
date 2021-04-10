@@ -1,6 +1,6 @@
 package com.example.semester_6;
 
-public class historyModel
+public class mySoldBookModel
 {
     String bookname;
     String authorname;
@@ -12,12 +12,12 @@ public class historyModel
     String myUID;
     String key;
     String imgUrl;
-    historyModel()
+    mySoldBookModel()
     {
 
     }
 
-    public historyModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl) {
+    public mySoldBookModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl) {
         this.bookname = bookname;
         this.authorname = authorname;
         this.booktype = booktype;

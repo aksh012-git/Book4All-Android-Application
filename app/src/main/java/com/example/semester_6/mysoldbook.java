@@ -1,5 +1,6 @@
 package com.example.semester_6;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,8 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.RemoteCallbackList;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +22,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class History extends Fragment {
+public class mysoldbook extends Fragment {
     private FirebaseAuth mAuth;
     private RecyclerView recView;
-    private FirebaseRecyclerOptions<historyModel> options;
-    private FirebaseRecyclerAdapter<historyModel, historyMyViewHolder> adapter;
+    private FirebaseRecyclerOptions<mySoldBookModel> options;
+    private FirebaseRecyclerAdapter<mySoldBookModel, mySoldBookMyViewHolder> adapter;
     private String xxxx;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,14 +44,14 @@ public class History extends Fragment {
 //        recView.setHasFixedSize(true);
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<historyModel> options =
-                new  FirebaseRecyclerOptions.Builder<historyModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference("books4All").child("booksDetails").orderByChild("myUID").equalTo(myUIDSold), historyModel.class)
+        FirebaseRecyclerOptions<mySoldBookModel> options =
+                new  FirebaseRecyclerOptions.Builder<mySoldBookModel>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference("books4All").child("booksDetails").orderByChild("myUID").equalTo(myUIDSold), mySoldBookModel.class)
                         .build();
 
-        adapter = new FirebaseRecyclerAdapter<historyModel, historyMyViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<mySoldBookModel, mySoldBookMyViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull historyMyViewHolder holder, int position, @NonNull historyModel model) {
+            protected void onBindViewHolder(@NonNull mySoldBookMyViewHolder holder, int position, @NonNull mySoldBookModel model) {
                 String bookNameHome = model.getBookname();
                 if(bookNameHome.length()>15)
                     bookNameHome=bookNameHome.substring(0,15)+"...";
@@ -61,6 +59,16 @@ public class History extends Fragment {
                 holder.bookname.setText(bookNameHome);
                 Glide.with(holder.imgUrl.getContext()).load(model.getImgUrl()).into(holder.imgUrl);
 
+                holder.viewHistory.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(),itemdetails_mysold.class);
+                        intent.putExtra("keyForSold",model.getKey());
+                        intent.putExtra("myUIDForSold",myUIDSold);
+                        intent.putExtra("myUIDForUserForSold",model.getMyUID());
+                        startActivity(intent);
+                    }
+                });
                 holder.deleteInsold.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -93,9 +101,9 @@ public class History extends Fragment {
             }
             @NonNull
             @Override
-            public historyMyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.history_row,parent,false);
-                return new historyMyViewHolder(view);
+            public mySoldBookMyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.mysold_row,parent,false);
+                return new mySoldBookMyViewHolder(view);
             }
         };
 

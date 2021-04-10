@@ -14,15 +14,16 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 
-public class historyMyViewHolder extends RecyclerView.ViewHolder
+public class mySoldBookMyViewHolder extends RecyclerView.ViewHolder
 {
     TextView bookname;
     ImageView imgUrl,deleteInsold;
     public View viewHistory;
-    public historyMyViewHolder(@NonNull View itemView) {
+    public mySoldBookMyViewHolder(@NonNull View itemView) {
         super(itemView);
         bookname = itemView.findViewById(R.id.booknameH);
         imgUrl = itemView.findViewById(R.id.bookImgH);
         deleteInsold =itemView.findViewById(R.id.deleteInSold);
+        viewHistory = itemView;
     }
 }

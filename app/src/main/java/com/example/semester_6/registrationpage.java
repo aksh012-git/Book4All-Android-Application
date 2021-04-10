@@ -118,10 +118,8 @@ public class registrationpage extends AppCompatActivity {
                             Toast.makeText(registrationpage.this, "Authentication success.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(registrationpage.this, nav.class));
                             bar.setVisibility(View.INVISIBLE);
-                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
-
                             Toast.makeText(registrationpage.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             bar.setVisibility(View.INVISIBLE);
                         }

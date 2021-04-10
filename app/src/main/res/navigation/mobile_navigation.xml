@@ -25,6 +25,6 @@
     <fragment
         android:id="@+id/history"
         android:label="MySoldBooks"
-        android:name="com.example.semester_6.History"
+        android:name="com.example.semester_6.mysoldbook"
         tools:layout="@layout/fragment_history" />
 </navigation>

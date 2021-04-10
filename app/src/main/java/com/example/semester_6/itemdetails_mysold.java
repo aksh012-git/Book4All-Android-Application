@@ -4,11 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,39 +16,36 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class itemDetails_cart extends AppCompatActivity {
+public class itemdetails_mysold extends AppCompatActivity {
     private TextView bookNameFullDetailsjava,bookAuthorFullDetailsjava,bookTypeFullDetailsjava,userNameJava,userEmailJava,userPhoneJava,
             bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava;
     private Intent intent;
     private ImageView bookimg;
-    private Button chatBtn;
     private   String userPhone;
+    private String mykeySold,MyUIDSold,myUIDForUserSold;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_details_cart);
-
-        bookAuthorFullDetailsjava = findViewById(R.id.bookAuthorFullDetailsCart);
-        bookNameFullDetailsjava = findViewById(R.id.bookNameFullDetailsCart);
-        bookTypeFullDetailsjava = findViewById(R.id.bookTypeFullDetailsCart);
-        bookRentingFullDetailsJava = findViewById(R.id.bookRentingFullDetailsCart);
-        bookSellingFullDetailsJava = findViewById(R.id.bookSellingFullDetailsCart);
-        bookAdressFullDetailsJava = findViewById(R.id.bookAdressFullDetailsCart);
-        bookZipcodeFullDetailsJava = findViewById(R.id.bookZipcodeFullDetailsCart);
-        userNameJava = findViewById(R.id.userNameCart);
-        userEmailJava = findViewById(R.id.userEmailCart);
-        userPhoneJava = findViewById(R.id.userPhoneCart);
-        bookimg = findViewById(R.id.bookImgfullDetailsCart);
-
-        chatBtn = findViewById(R.id.chatWpCart);
+        setContentView(R.layout.activity_itemdetails_mysold);
+        bookAuthorFullDetailsjava = findViewById(R.id.bookAuthorFullDetailsSold);
+        bookNameFullDetailsjava = findViewById(R.id.bookNameFullDetailsSold);
+        bookTypeFullDetailsjava = findViewById(R.id.bookTypeFullDetailsSold);
+        bookRentingFullDetailsJava = findViewById(R.id.bookRentingFullDetailsSold);
+        bookSellingFullDetailsJava = findViewById(R.id.bookSellingFullDetailsSold);
+        bookAdressFullDetailsJava = findViewById(R.id.bookAdressFullDetailsSold);
+        bookZipcodeFullDetailsJava = findViewById(R.id.bookZipcodeFullDetailsSold);
+        userNameJava = findViewById(R.id.userNameSold);
+        userEmailJava = findViewById(R.id.userEmailSold);
+        userPhoneJava = findViewById(R.id.userPhoneSold);
+        bookimg = findViewById(R.id.bookImgfullDetailsSold);
 
         intent = new Intent(getIntent());
-        String mykeyCart = intent.getStringExtra("key");
-        String MyUIDCart = intent.getStringExtra("myUID");
-        String myUIDForUserCart = intent.getStringExtra("myUIDForUser");
-
+        mykeySold = intent.getStringExtra("keyForSold");
+        MyUIDSold = intent.getStringExtra("myUIDForSold");
+        myUIDForUserSold = intent.getStringExtra("myUIDForUserForSold");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference reference = firebaseDatabase.getReference("books4All").child("Cart").child(MyUIDCart).child(mykeyCart);
+        DatabaseReference reference = firebaseDatabase.getReference("books4All").child("booksDetails").child(mykeySold);
+
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -79,12 +72,14 @@ public class itemDetails_cart extends AppCompatActivity {
                     Glide.with(bookimg.getContext()).load(bookimgx).into(bookimg);
                 }
             }
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(itemDetails_cart.this, "Error:"+error, Toast.LENGTH_LONG).show();
+                Toast.makeText(itemdetails_mysold.this, "Error:"+error, Toast.LENGTH_LONG).show();
             }
         });
-        DatabaseReference reference2 =  firebaseDatabase.getReference("books4All").child("userData").child(myUIDForUserCart);
+        DatabaseReference reference2 =  firebaseDatabase.getReference("books4All").child("userData").child(myUIDForUserSold);
         reference2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -100,31 +95,8 @@ public class itemDetails_cart extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(itemDetails_cart.this, "Error:"+error, Toast.LENGTH_LONG).show();
+                Toast.makeText(itemdetails_mysold.this, "Error:"+error, Toast.LENGTH_LONG).show();
             }
         });
-
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean insalled = appInstallorNot("com.whatsapp");
-                if (insalled){
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+userPhone));
-                    startActivity(intent);
-                }
-                else {
-                    Toast.makeText(itemDetails_cart.this, "whatsapp not!!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private boolean appInstallorNot(String s) {
-        PackageManager packageManager = getPackageManager();
-        boolean app_installed;
-        packageManager.getPackageArchiveInfo(s, PackageManager.GET_ACTIVITIES);
-        app_installed  = true;
-        return app_installed;
     }
 }
