@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +64,13 @@ public class sellPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 bar.setVisibility(View.VISIBLE);
+                bookNamejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                authornamejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                booktypejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                rentingjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                sellingjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                addadressjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                zipcodejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 String bookname = bookNamejava.getText().toString();
                 String authorname = authornamejava.getText().toString();
                 String booktype= booktypejava.getText().toString();

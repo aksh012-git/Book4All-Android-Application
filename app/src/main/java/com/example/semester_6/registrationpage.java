@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -59,9 +60,13 @@ public class registrationpage extends AppCompatActivity {
         gohomesigupjava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                emailsignupjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                passwordsignupjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                conformpasswordsignupjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                phonesignupjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                namesignupjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 String emailSjava = emailsignupjava.getText().toString();
                 String passwordSjava = passwordsignupjava.getText().toString().trim();
-                String passwordSjava1 = passwordsignupjava.getText().toString().trim();
                 String conformpasswordSjava = conformpasswordsignupjava.getText().toString().trim();
                 String phoneSjava = phonesignupjava.getText().toString().trim();
                 String nameSjava = namesignupjava.getText().toString().trim();
@@ -105,6 +110,14 @@ public class registrationpage extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(registrationpage.this, "mail has been sent to your account: "+emailSjava, Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                             HashMap<String , Object> map = new HashMap<>();
                             map.put("email",emailSjava);
                             map.put("name",nameSjava);
@@ -114,13 +127,15 @@ public class registrationpage extends AppCompatActivity {
                             FirebaseUser currentUser = mAuth.getCurrentUser();
                             String myUID = currentUser.getUid();
                             firebaseDatabase.getReference("books4All").child("userData").child(myUID).updateChildren(map);
+                            Intent i = new Intent(registrationpage.this,MainActivity.class);
+                            i.putExtra("flag",true);
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(registrationpage.this, "Authentication success.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(registrationpage.this, nav.class));
+                            startActivity(i);
+                            finish();
                             bar.setVisibility(View.INVISIBLE);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(registrationpage.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(registrationpage.this, "Authentication failed.", Toast.LENGTH_LONG).show();
                             bar.setVisibility(View.INVISIBLE);
                         }
                     }

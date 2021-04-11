@@ -66,8 +66,42 @@ public class itemDetails extends AppCompatActivity {
         String MyUID = intent.getStringExtra("myUID");
 
 
-
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference reference2 =  firebaseDatabase.getReference("books4All").child("userData").child(MyUID);
+        reference2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String userName = snapshot.child("name").getValue(String.class);
+                    String userEmail = snapshot.child("email").getValue(String.class);
+                    userPhone = snapshot.child("phone").getValue(String.class);
+                    userNameJava.setText(userName);
+                    userEmailJava.setText(userEmail);
+                    userPhoneJava.setText(userPhone);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(itemDetails.this, "Error:"+error, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean insalled = appInstallorNot("com.whatsapp");
+                if (insalled){
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+userPhone));
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(itemDetails.this, "whatsapp not!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         DatabaseReference reference = firebaseDatabase.getReference("books4All").child("booksDetails").child(mykey);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -110,40 +144,7 @@ public class itemDetails extends AppCompatActivity {
             }
         });
 
-        DatabaseReference reference2 =  firebaseDatabase.getReference("books4All").child("userData").child(MyUID);
-        reference2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    String userName = snapshot.child("name").getValue(String.class);
-                    String userEmail = snapshot.child("email").getValue(String.class);
-                    userPhone = snapshot.child("phone").getValue(String.class);
-                    userNameJava.setText(userName);
-                    userEmailJava.setText(userEmail);
-                    userPhoneJava.setText(userPhone);
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(itemDetails.this, "Error:"+error, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean insalled = appInstallorNot("com.whatsapp");
-                if (insalled){
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+userPhone));
-                    startActivity(intent);
-                }
-                else {
-                    Toast.makeText(itemDetails.this, "whatsapp not!!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private boolean appInstallorNot(String s) {
