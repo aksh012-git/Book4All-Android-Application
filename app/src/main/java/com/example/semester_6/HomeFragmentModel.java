@@ -1,7 +1,5 @@
 package com.example.semester_6;
 
-import android.net.Uri;
-
 public class HomeFragmentModel
 {
     String bookname;
@@ -14,12 +12,14 @@ public class HomeFragmentModel
     String myUID;
     String key;
     String imgUrl;
+    String renttime;
+    String wpnumber;
     HomeFragmentModel()
     {
 
     }
 
-    public HomeFragmentModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl) {
+    public HomeFragmentModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl, String renttime, String wpnumer) {
         this.bookname = bookname;
         this.authorname = authorname;
         this.booktype = booktype;
@@ -30,6 +30,8 @@ public class HomeFragmentModel
         this.myUID = myUID;
         this.key = key;
         this.imgUrl = imgUrl;
+        this.renttime = renttime;
+        this.wpnumber = wpnumer;
     }
 
     public String getBookname() {
@@ -113,5 +115,21 @@ public class HomeFragmentModel
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getRenttime() {
+        return renttime;
+    }
+
+    public void setRenttime(String renttime) {
+        this.renttime = renttime;
+    }
+
+    public String getWpnumber() {
+        return wpnumber;
+    }
+
+    public void setWpnumber(String wpnumber) {
+        this.wpnumber = wpnumber;
     }
 }

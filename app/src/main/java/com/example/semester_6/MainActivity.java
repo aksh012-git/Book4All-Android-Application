@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, nav.class));
                 finish();
             }else {
-                Toast.makeText(MainActivity.this, "User Is not Verify!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "User Is not Verifyd!!!", Toast.LENGTH_SHORT).show();
             }
         }
 

@@ -8,6 +8,15 @@
     android:background="#FFFFFF"
     tools:context=".ui.home.itemDetails">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
     <ImageView
         android:id="@+id/bookImgfullDetails"
         android:layout_width="match_parent"
@@ -18,6 +27,7 @@
         android:id="@+id/bookNameFullDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:textAlignment="center"
         android:textSize="20dp" />
@@ -42,18 +52,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff" />
-
-        <TextView
-            android:id="@+id/bookRentingFullDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#fff" />
-
         <TextView
             android:id="@+id/bookSellingFullDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/bookRentingFullDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:textColor="#fff" />
+        <TextView
+            android:id="@+id/renttimeFullDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/bookAdressFullDetails"
@@ -116,12 +135,11 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp">
         <Button
-            android:id="@+id/button"
+            android:id="@+id/callButton"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="Rent Now"
-            android:visibility="gone"
+            android:text="call"
             android:layout_marginRight="5dp"/>
 
         <Button
@@ -132,6 +150,7 @@
             android:layout_weight="1"
             android:text="Chat" />
     </LinearLayout>
+
     <ImageView
         android:id="@+id/addCartItemdetails"
         android:layout_width="50dp"
@@ -140,4 +159,6 @@
         android:layout_marginTop="-655dp"
         android:layout_marginRight="5dp"
         android:src="@drawable/cart" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

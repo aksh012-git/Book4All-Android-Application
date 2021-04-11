@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class itemdetails_mysold extends AppCompatActivity {
     private TextView bookNameFullDetailsjava,bookAuthorFullDetailsjava,bookTypeFullDetailsjava,userNameJava,userEmailJava,userPhoneJava,
-            bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava;
+            bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava,renttimeFullDetailsJava;
     private Intent intent;
     private ImageView bookimg;
     private   String userPhone;
@@ -34,6 +34,7 @@ public class itemdetails_mysold extends AppCompatActivity {
         bookSellingFullDetailsJava = findViewById(R.id.bookSellingFullDetailsSold);
         bookAdressFullDetailsJava = findViewById(R.id.bookAdressFullDetailsSold);
         bookZipcodeFullDetailsJava = findViewById(R.id.bookZipcodeFullDetailsSold);
+        renttimeFullDetailsJava = findViewById(R.id.renttimeFullDetailsSold);
         userNameJava = findViewById(R.id.userNameSold);
         userEmailJava = findViewById(R.id.userEmailSold);
         userPhoneJava = findViewById(R.id.userPhoneSold);
@@ -58,10 +59,12 @@ public class itemdetails_mysold extends AppCompatActivity {
                     String bookAdrress = snapshot.child("address").getValue(String.class);
                     String bookZip = snapshot.child("zipcode").getValue(String.class);
                     String bookimgx = snapshot.child("imgUrl").getValue(String.class);
+                    String retntime = snapshot.child("renttime").getValue(String.class);
 
                     String y = "₹" + bookSellPrice;
                     String x = "₹" + bookRentPrice;
 
+                    renttimeFullDetailsJava.setText(retntime);
                     bookNameFullDetailsjava.setText(name);
                     bookAuthorFullDetailsjava.setText(bookauth);
                     bookTypeFullDetailsjava.setText(booktype);

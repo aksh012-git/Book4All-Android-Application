@@ -30,13 +30,13 @@ import java.util.HashMap;
 
 public class itemDetails extends AppCompatActivity {
     private TextView bookNameFullDetailsjava,bookAuthorFullDetailsjava,bookTypeFullDetailsjava,userNameJava,userEmailJava,userPhoneJava,
-            bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava;
+            bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava,renttimeFullDetailsJava;
     private Intent intent;
     private ImageView bookimg,addCartItemdetailsJava;
-    private Button chatBtn;
-    private   String userPhone;
+    private Button chatBtn,callBtn;
+    private   String userPhone,bookwpnumber;
     private FirebaseAuth mAuth;
-    String name,bookauth,booktype,bookRentPrice,bookSellPrice,bookAdrress,bookZip,bookimgx,keyitemdetail,myUID;
+    private String name,bookauth,booktype,bookRentPrice,bookSellPrice,bookAdrress,bookZip,bookimgx,keyitemdetail,myUID,rentTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +50,14 @@ public class itemDetails extends AppCompatActivity {
         bookSellingFullDetailsJava = findViewById(R.id.bookSellingFullDetails);
         bookAdressFullDetailsJava = findViewById(R.id.bookAdressFullDetails);
         bookZipcodeFullDetailsJava = findViewById(R.id.bookZipcodeFullDetails);
+        renttimeFullDetailsJava = findViewById(R.id.renttimeFullDetails);
         userNameJava = findViewById(R.id.userName);
         userEmailJava = findViewById(R.id.userEmail);
         userPhoneJava = findViewById(R.id.userPhone);
         bookimg = findViewById(R.id.bookImgfullDetails);
         addCartItemdetailsJava = findViewById(R.id.addCartItemdetails);
         chatBtn = findViewById(R.id.chatWp);
+        callBtn = findViewById(R.id.callButton);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -87,20 +89,7 @@ public class itemDetails extends AppCompatActivity {
             }
         });
 
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean insalled = appInstallorNot("com.whatsapp");
-                if (insalled){
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+userPhone));
-                    startActivity(intent);
-                }
-                else {
-                    Toast.makeText(itemDetails.this, "whatsapp not!!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
 
         DatabaseReference reference = firebaseDatabase.getReference("books4All").child("booksDetails").child(mykey);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,6 +106,8 @@ public class itemDetails extends AppCompatActivity {
                     bookimgx = snapshot.child("imgUrl").getValue(String.class);
                     keyitemdetail = snapshot.child("key").getValue(String.class);
                     myUID = snapshot.child("myUID").getValue(String.class);
+                    bookwpnumber = snapshot.child("wpnumber").getValue(String.class);
+                    rentTime = snapshot.child("renttime").getValue(String.class);
 
                     String y = "₹" + bookSellPrice;
                     String x = "₹" + bookRentPrice;
@@ -128,6 +119,7 @@ public class itemDetails extends AppCompatActivity {
                     bookSellingFullDetailsJava.setText("Selling Price :" + y);
                     bookAdressFullDetailsJava.setText(bookAdrress);
                     bookZipcodeFullDetailsJava.setText(bookZip);
+                    renttimeFullDetailsJava.setText(rentTime);
                     Glide.with(bookimg.getContext()).load(bookimgx).into(bookimg);
                 }
             }
@@ -136,11 +128,34 @@ public class itemDetails extends AppCompatActivity {
                 Toast.makeText(itemDetails.this, "Error:"+error, Toast.LENGTH_LONG).show();
             }
         });
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean insalled = appInstallorNot("com.whatsapp");
+                if (insalled){
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+bookwpnumber+"&text=i like your book "+"'"+name+"'"+" on book4All"));
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(itemDetails.this, "whatsapp not!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+userPhone));
+                startActivity(intent);
+            }
+        });
 
         addCartItemdetailsJava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                prossecctomycart(keyitemdetail,myUID,name,bookauth,booktype,bookRentPrice,bookSellPrice,bookAdrress,bookZip,bookimgx,myItemDetailsHome);
+                prossecctomycart(keyitemdetail,myUID,name,bookauth,booktype,bookRentPrice,bookSellPrice,bookAdrress,bookZip,bookimgx,myItemDetailsHome,rentTime,bookwpnumber);
             }
         });
 
@@ -154,7 +169,7 @@ public class itemDetails extends AppCompatActivity {
         app_installed  = true;
         return app_installed;
     }
-    private void prossecctomycart(String key, String myUID, String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String imgUrl,String myUIDHome) {
+    private void prossecctomycart(String key, String myUID, String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String imgUrl,String myUIDHome,String renttimes,String wpnumber) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference reference = firebaseDatabase.getReference("books4All").child("Cart").child(myUIDHome);
         HashMap<String,String> map = new HashMap<>();
@@ -168,6 +183,8 @@ public class itemDetails extends AppCompatActivity {
         map.put("myUID", myUID);
         map.put("key", key);
         map.put("imgUrl",imgUrl);
+        map.put("wpnumber",wpnumber);
+        map.put("renttime",renttimes);
         reference.child(key).setValue(map);
         Toast.makeText(itemDetails.this, "Saved in 'MyCart'", Toast.LENGTH_LONG).show();
     }

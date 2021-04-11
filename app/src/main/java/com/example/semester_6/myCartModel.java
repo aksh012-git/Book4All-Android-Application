@@ -11,11 +11,13 @@ public class myCartModel {
     String myUID;
     String key;
     String imgUrl;
+    String renttime;
+    String wpnumber;
     myCartModel() {
 
     }
 
-    public myCartModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl) {
+    public myCartModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl, String renttime, String wpnumber) {
         this.bookname = bookname;
         this.authorname = authorname;
         this.booktype = booktype;
@@ -26,6 +28,8 @@ public class myCartModel {
         this.myUID = myUID;
         this.key = key;
         this.imgUrl = imgUrl;
+        this.renttime = renttime;
+        this.wpnumber = wpnumber;
     }
 
     public String getBookname() {
@@ -106,5 +110,21 @@ public class myCartModel {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getRenttime() {
+        return renttime;
+    }
+
+    public void setRenttime(String renttime) {
+        this.renttime = renttime;
+    }
+
+    public String getWpnumber() {
+        return wpnumber;
+    }
+
+    public void setWpnumber(String wpnumber) {
+        this.wpnumber = wpnumber;
     }
 }

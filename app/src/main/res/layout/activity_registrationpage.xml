@@ -76,6 +76,7 @@
                     android:hint="Phone"
                     android:drawableRight="@drawable/ic_baseline_phone_android_24"
                     android:inputType="phone"
+                    android:maxLength="10"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"/>
 

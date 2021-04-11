@@ -57,4 +57,10 @@
     <string name="searchHint">Search bookname hear...</string>
     <string name="verifyEmail">please verify your email</string>
     <string name="verifiyMail">Verification mail sent to the your email address</string>
+    <string-array name="year">
+        <item>Per Day</item>
+        <item>Per week</item>
+        <item>Per Month</item>
+        <item>per year</item>
+    </string-array>
 </resources>

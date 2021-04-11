@@ -22,11 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class itemDetails_cart extends AppCompatActivity {
     private TextView bookNameFullDetailsjava,bookAuthorFullDetailsjava,bookTypeFullDetailsjava,userNameJava,userEmailJava,userPhoneJava,
-            bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava;
+            bookRentingFullDetailsJava,bookSellingFullDetailsJava,bookAdressFullDetailsJava,bookZipcodeFullDetailsJava,renttimeFullDetailsJava;
     private Intent intent;
     private ImageView bookimg;
-    private Button chatBtn;
-    private   String userPhone;
+    private Button chatBtn,callBtn;
+    private   String userPhone,bookwpnumber ,name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +39,12 @@ public class itemDetails_cart extends AppCompatActivity {
         bookSellingFullDetailsJava = findViewById(R.id.bookSellingFullDetailsCart);
         bookAdressFullDetailsJava = findViewById(R.id.bookAdressFullDetailsCart);
         bookZipcodeFullDetailsJava = findViewById(R.id.bookZipcodeFullDetailsCart);
+        renttimeFullDetailsJava = findViewById(R.id.renttimeFullDetailsCart);
         userNameJava = findViewById(R.id.userNameCart);
         userEmailJava = findViewById(R.id.userEmailCart);
         userPhoneJava = findViewById(R.id.userPhoneCart);
         bookimg = findViewById(R.id.bookImgfullDetailsCart);
-
+        callBtn = findViewById(R.id.callbtnCart);
         chatBtn = findViewById(R.id.chatWpCart);
 
         intent = new Intent(getIntent());
@@ -57,7 +58,7 @@ public class itemDetails_cart extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    String name = snapshot.child("bookname").getValue(String.class);
+                     name = snapshot.child("bookname").getValue(String.class);
                     String bookauth = snapshot.child("authorname").getValue(String.class);
                     String booktype = snapshot.child("booktype").getValue(String.class);
                     String bookRentPrice = snapshot.child("rentingprice").getValue(String.class);
@@ -65,6 +66,8 @@ public class itemDetails_cart extends AppCompatActivity {
                     String bookAdrress = snapshot.child("address").getValue(String.class);
                     String bookZip = snapshot.child("zipcode").getValue(String.class);
                     String bookimgx = snapshot.child("imgUrl").getValue(String.class);
+                    bookwpnumber = snapshot.child("wpnumber").getValue(String.class);
+                    String retntime = snapshot.child("renttime").getValue(String.class);
 
                     String y = "₹" + bookSellPrice;
                     String x = "₹" + bookRentPrice;
@@ -76,6 +79,7 @@ public class itemDetails_cart extends AppCompatActivity {
                     bookSellingFullDetailsJava.setText("Selling Price: " + y);
                     bookAdressFullDetailsJava.setText(bookAdrress);
                     bookZipcodeFullDetailsJava.setText(bookZip);
+                    renttimeFullDetailsJava.setText(retntime);
                     Glide.with(bookimg.getContext()).load(bookimgx).into(bookimg);
                 }
             }
@@ -110,12 +114,20 @@ public class itemDetails_cart extends AppCompatActivity {
                 boolean insalled = appInstallorNot("com.whatsapp");
                 if (insalled){
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+userPhone));
+                    intent.setData(Uri.parse("https://api.WhatsApp.com/send?phone="+"+91"+bookwpnumber+"&text=i like your book "+"'"+name+"'"+" on book4All"));
                     startActivity(intent);
                 }
                 else {
                     Toast.makeText(itemDetails_cart.this, "whatsapp not!!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+userPhone));
+                startActivity(intent);
             }
         });
     }

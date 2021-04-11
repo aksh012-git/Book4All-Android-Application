@@ -17,7 +17,7 @@
         android:id="@+id/bookNameFullDetailsCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="bookNameFullDetails"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:layout_marginTop="20dp"
         android:textAlignment="center"/>
@@ -35,43 +35,49 @@
             android:id="@+id/bookAuthorFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="bookAuthorFullDetails" />
+            android:textColor="#fff" />
 
         <TextView
             android:id="@+id/bookTypeFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="bookTypeFullDetails" />
-
-        <TextView
-            android:id="@+id/bookRentingFullDetailsCart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="bookRentingFullDetails" />
+            android:textColor="#fff" />
 
         <TextView
             android:id="@+id/bookSellingFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="bookSellingFullDetails" />
+            android:textColor="#fff" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/bookRentingFullDetailsCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:textColor="#fff" />
+            <TextView
+                android:id="@+id/renttimeFullDetailsCart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#fff"/>
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/bookAdressFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="bookAdressFullDetails" />
+            android:textColor="#fff" />
 
         <TextView
             android:id="@+id/bookZipcodeFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="bookZipcodeFullDetails" />
+            android:textColor="#fff" />
 
     </LinearLayout>
 
@@ -99,22 +105,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff"
-            android:text="TextView"
             />
 
         <TextView
             android:id="@+id/userEmailCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="TextView" />
+            android:textColor="#fff" />
 
         <TextView
             android:id="@+id/userPhoneCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="TextView" />
+            android:textColor="#fff" />
     </LinearLayout>
 
     <LinearLayout
@@ -125,12 +128,11 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp">
         <Button
-            android:id="@+id/buttonCart"
+            android:id="@+id/callbtnCart"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="Rent Now"
-            android:visibility="gone"
+            android:text="call"
             android:layout_marginRight="5dp"/>
 
         <Button

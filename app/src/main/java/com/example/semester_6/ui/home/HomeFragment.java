@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         prossecctomycart(model.getKey(),model.getMyUID(),model.getBookname(),model.getAuthorname(),model.getBooktype(),model.getRentingprice(),
-                                model.getSellingprice(),model.getAddress(),model.getZipcode(),model.getImgUrl(),myUIDHome);
+                                model.getSellingprice(),model.getAddress(),model.getZipcode(),model.getImgUrl(),myUIDHome,model.getRenttime(),model.getWpnumber());
 
                     }
                 });
@@ -137,7 +137,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private void prossecctomycart(String key, String myUID, String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String imgUrl,String myUIDHome) {
+    private void prossecctomycart(String key, String myUID, String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String imgUrl,String myUIDHome,String retntime,String wpnumber) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference reference = firebaseDatabase.getReference("books4All").child("Cart").child(myUIDHome);
         HashMap<String,String> map = new HashMap<>();
@@ -151,6 +151,8 @@ public class HomeFragment extends Fragment {
         map.put("myUID", myUID);
         map.put("key", key);
         map.put("imgUrl",imgUrl);
+        map.put("wpnumber",wpnumber);
+        map.put("renttime",retntime);
         reference.child(key).setValue(map);
         Toast.makeText(getContext(), "Saved in 'MyCart'", Toast.LENGTH_LONG).show();
     }
@@ -193,7 +195,7 @@ public class HomeFragment extends Fragment {
                         FirebaseUser currentUser = mAuth.getCurrentUser();
                         String myUIDHome = currentUser.getUid();
                         prossecctomycart(model.getKey(),model.getMyUID(),model.getBookname(),model.getAuthorname(),model.getBooktype(),model.getRentingprice(),
-                                model.getSellingprice(),model.getAddress(),model.getZipcode(),model.getImgUrl(),myUIDHome);
+                                model.getSellingprice(),model.getAddress(),model.getZipcode(),model.getImgUrl(),myUIDHome,model.getRenttime(),model.getWpnumber());
 
                     }
                 });

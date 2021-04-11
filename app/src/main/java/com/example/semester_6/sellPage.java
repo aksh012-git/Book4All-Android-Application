@@ -12,10 +12,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,15 +32,18 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.security.SecurityPermission;
 import java.util.HashMap;
 
 public class sellPage extends AppCompatActivity {
     private Button uplodeButtonjava;
-    private EditText bookNamejava,authornamejava,booktypejava,rentingjava,sellingjava,addadressjava,zipcodejava;
+    private EditText bookNamejava,authornamejava,booktypejava,rentingjava,sellingjava,addadressjava,zipcodejava,uploadWhatsappjava;
     private ImageView uploadImage;
     private FirebaseAuth mAuth;
     private Uri imageUri;
     private ProgressBar bar;
+    private Spinner rentingSpinner;
+    private String sppinervalue;
     private StorageReference storage = FirebaseStorage.getInstance().getReference();
 
     @Override
@@ -55,8 +61,23 @@ public class sellPage extends AppCompatActivity {
         zipcodejava = findViewById(R.id.uploadZipcode);
         uploadImage = findViewById(R.id.uploadBookImg);
         bar = findViewById(R.id.sellprogressBar);
+        uploadWhatsappjava = findViewById(R.id.uploadWhatsapp);
+        rentingSpinner = findViewById(R.id.spinner);
 
+        ArrayAdapter<CharSequence> adapterrenting = ArrayAdapter.createFromResource(sellPage.this,R.array.year,R.layout.spinner_item);
+        adapterrenting.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rentingSpinner.setAdapter(adapterrenting);
+        rentingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                sppinervalue = adapterView.getItemAtPosition(i).toString();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         //init auth
         mAuth = FirebaseAuth.getInstance();
@@ -71,6 +92,7 @@ public class sellPage extends AppCompatActivity {
                 sellingjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 addadressjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 zipcodejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                uploadWhatsappjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 String bookname = bookNamejava.getText().toString();
                 String authorname = authornamejava.getText().toString();
                 String booktype= booktypejava.getText().toString();
@@ -78,12 +100,18 @@ public class sellPage extends AppCompatActivity {
                 String sellingprice = sellingjava.getText().toString();
                 String address = addadressjava.getText().toString();
                 String zipcode = zipcodejava.getText().toString();
+                String wpNumber = uploadWhatsappjava.getText().toString();
 
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 String myUID = currentUser.getUid();
-
-                if (imageUri !=null){
-                    addBookDetails(bookname,authorname,booktype,rentingprice,sellingprice,address,zipcode,myUID,imageUri);                }
+                if(bookNamejava.getText().toString().isEmpty()||authornamejava.getText().toString().isEmpty()||booktypejava.getText().toString().isEmpty()
+                ||rentingjava.getText().toString().isEmpty()||sellingjava.getText().toString().isEmpty()||addadressjava.getText().toString().isEmpty()
+                ||zipcodejava.getText().toString().isEmpty()||uploadWhatsappjava.getText().toString().isEmpty()){
+                    Toast.makeText(sellPage.this,"fill all details properly",Toast.LENGTH_SHORT).show();
+                    bar.setVisibility(View.INVISIBLE);
+                }
+                else if (imageUri !=null){
+                    addBookDetails(bookname,authorname,booktype,rentingprice,sellingprice,address,zipcode,myUID,imageUri,wpNumber);}
                 else {
                     bar.setVisibility(View.INVISIBLE);
                     Toast.makeText(sellPage.this, "Please select Image", Toast.LENGTH_LONG).show();
@@ -114,7 +142,7 @@ public class sellPage extends AppCompatActivity {
         }
     }
 
-    private void addBookDetails(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode,String myUID,Uri uri) {
+    private void addBookDetails(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode,String myUID,Uri uri,String wpNumber) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference reference = firebaseDatabase.getReference("books4All").child("booksDetails").push();
         String key = reference.getKey();
@@ -129,6 +157,8 @@ public class sellPage extends AppCompatActivity {
             map.put("zipcode", zipcode);
             map.put("myUID", myUID);
             map.put("key", key);
+            map.put("wpnumber",wpNumber);
+            map.put("renttime",sppinervalue);
 
             StorageReference fileref = storage.child(System.currentTimeMillis() + "." + getFileExtension(uri));
             fileref.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -156,6 +186,4 @@ public class sellPage extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(uri));
     }
-
-
 }

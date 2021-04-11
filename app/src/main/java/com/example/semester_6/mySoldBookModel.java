@@ -12,12 +12,14 @@ public class mySoldBookModel
     String myUID;
     String key;
     String imgUrl;
+    String renttime;
+    String wpnumber;
     mySoldBookModel()
     {
 
     }
 
-    public mySoldBookModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl) {
+    public mySoldBookModel(String bookname, String authorname, String booktype, String rentingprice, String sellingprice, String address, String zipcode, String myUID, String key, String imgUrl, String renttime, String wpnumber) {
         this.bookname = bookname;
         this.authorname = authorname;
         this.booktype = booktype;
@@ -28,6 +30,8 @@ public class mySoldBookModel
         this.myUID = myUID;
         this.key = key;
         this.imgUrl = imgUrl;
+        this.renttime = renttime;
+        this.wpnumber = wpnumber;
     }
 
     public String getBookname() {
@@ -108,5 +112,21 @@ public class mySoldBookModel
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getRenttime() {
+        return renttime;
+    }
+
+    public void setRenttime(String renttime) {
+        this.renttime = renttime;
+    }
+
+    public String getWpnumber() {
+        return wpnumber;
+    }
+
+    public void setWpnumber(String wpnumber) {
+        this.wpnumber = wpnumber;
     }
 }
