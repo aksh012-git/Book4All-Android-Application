@@ -14,9 +14,9 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Books4All"
+        android:text="@string/Books4AllName"
         android:textAlignment="center"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textColor="#fff"
         android:layout_marginTop="10dp"
         tools:layout_editor_absoluteX="230dp"
@@ -30,18 +30,18 @@
         android:id="@+id/verifymessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="you have not received mail then"
-        android:textSize="15dp"
+        android:text="@string/mailResiver"
+        android:textSize="15sp"
         android:textColor="#fff"
-        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         android:visibility="gone"/>
     <TextView
         android:id="@+id/verifiybuttonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="VerifiyAgain"
+        android:text="@string/VerifiyAgain"
         android:textAlignment="center"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="#c02739"
         android:background="@drawable/verifyshap"
@@ -71,9 +71,9 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/cardview_dark_background"
                     android:layout_marginTop="30dp"
-                    android:text="LogIn"
+                    android:text="@string/LogInHead"
                     android:textAlignment="center"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
 
                 <EditText
                     android:id="@+id/loginemail"
@@ -83,37 +83,40 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_shap"
-                    android:drawableRight="@drawable/ic_baseline_email_24"
+                    android:drawableEnd="@drawable/ic_baseline_email_24"
                     android:ems="10"
-                    android:hint="Email"
+                    android:hint="@string/Emaillogin"
                     android:paddingBottom="7dp"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/cardview_dark_background"
-                    android:textColorHint="@color/black" />
+                    android:textColorHint="@color/black"
+                    android:autofillHints="" />
 
                 <EditText
                     android:id="@+id/loginpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Password"
+                    android:hint="@string/Passwordlogin"
                     android:background="@drawable/edittext_shap"
                     android:paddingBottom="7dp"
                     android:textColorHint="@color/black"
                     android:textColor="@color/cardview_dark_background"
                     android:layout_marginTop="60dp"
                     android:inputType="textPassword"
-                    android:drawableRight="@drawable/ic_baseline_vpn_key_24"
+                    android:drawableEnd="@drawable/ic_baseline_vpn_key_24"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp"
+                    android:autofillHints="" />
 
                 <ImageView
                     android:id="@+id/loginbutton"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="40dp"
                     android:layout_height="60dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="10dp"
                     android:src="@drawable/login"
-                    android:layout_marginBottom="10dp"/>
+                    android:contentDescription="@string/todo" />
             </LinearLayout>
         </ScrollView>
         <ProgressBar
@@ -134,10 +137,10 @@
             android:id="@+id/logintosignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:text="Create new account" />
+            android:text="@string/Createnewaccount" />
 
     </LinearLayout>
 

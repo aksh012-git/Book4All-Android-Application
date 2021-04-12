@@ -57,6 +57,21 @@
     <string name="searchHint">Search bookname hear...</string>
     <string name="verifyEmail">please verify your email</string>
     <string name="verifiyMail">Verification mail sent to the your email address</string>
+    <string name="sellButton">sell</string>
+    <string name="LogInHead">LogIn</string>
+    <string name="Books4AllName">Books4All</string>
+    <string name="Emaillogin">Email</string>
+    <string name="Passwordlogin">Password</string>
+    <string name="Createnewaccount">Create new account</string>
+    <string name="mailResiver">you have not received mail then</string>
+    <string name="VerifiyAgain">VerifiyAgain</string>
+    <string name="WhatsappNumber">Whatsapp Number</string>
+    <string name="SignUp">SignUp</string>
+    <string name="Namesu">Name</string>
+    <string name="Phonesu">Phone</string>
+    <string name="ConformPassword">Confirm Password</string>
+    <string name="LogIninstead">LogIn instead</string>
+    <string name="todo">TODO</string>
     <string-array name="year">
         <item>Per Day</item>
         <item>Per week</item>

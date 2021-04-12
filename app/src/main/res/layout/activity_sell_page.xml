@@ -38,7 +38,7 @@ tools:context=".sellPage">
                 android:text="@string/UplodeDetails"
                 android:textAlignment="center"
                 android:textColor="#3aa8c1"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:textStyle="bold"
@@ -66,13 +66,14 @@ tools:context=".sellPage">
                     android:text="@string/uploadImg"
                     android:gravity="center"
                     android:textColor="#fff"
-                    android:textSize="25dp"/>
+                    android:textSize="25sp"/>
             <ImageView
                 android:id="@+id/uploadBookImg"
                 android:layout_width="wrap_content"
                 android:layout_height="160dp"
                 android:layout_gravity="center"
-                android:src="@drawable/upload" />
+                android:src="@drawable/upload"
+                android:contentDescription="@string/todo" />
 
             </LinearLayout>
 
@@ -90,7 +91,8 @@ tools:context=".sellPage">
                 android:textColorHint="@color/black"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/bookname"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:autofillHints="" />
             <EditText
                 android:id="@+id/uplodeAuthorname"
                 android:layout_width="match_parent"
@@ -104,7 +106,8 @@ tools:context=".sellPage">
                 android:textColorHint="@color/black"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/authorName"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/uplodeBooktype"
@@ -119,7 +122,8 @@ tools:context=".sellPage">
                 android:textColorHint="@color/black"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/booktype"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/uploadSelling"
@@ -135,29 +139,31 @@ tools:context=".sellPage">
                 android:paddingBottom="5dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:hint="@string/sellingprice" />
+                android:hint="@string/sellingprice"
+                android:autofillHints="" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
             <EditText
                 android:id="@+id/uploadRenting"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:ems="10"
                 android:inputType="number"
                 android:background="@drawable/edittext_shap"
                 android:paddingBottom="5dp"
                 android:textColor="@color/black"
-                android:layout_marginRight="9dp"
+                android:layout_marginEnd="9dp"
                 android:layout_marginBottom="10dp"
                 android:maxLength="10"
                 android:textColorHint="@color/black"
-                android:hint="@string/rentingprice" />
+                android:hint="@string/rentingprice"
+                android:autofillHints="" />
 
                 <RelativeLayout
                     android:id="@+id/spinnerLayout"
@@ -173,18 +179,17 @@ tools:context=".sellPage">
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:spinnerMode="dropdown"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+                        android:src="@drawable/ic_baseline_arrow_drop_down_24"
+                        android:contentDescription="@string/todo" />
 
                 </RelativeLayout>
 
@@ -201,7 +206,8 @@ tools:context=".sellPage">
                 android:paddingBottom="5dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:hint="@string/address" />
+                android:hint="@string/address"
+                android:autofillHints="" />
 
 
             <EditText
@@ -218,7 +224,8 @@ tools:context=".sellPage">
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:maxLength="6"
-                android:hint="@string/zipcode" />
+                android:hint="@string/zipcode"
+                android:autofillHints="" />
             <EditText
                 android:id="@+id/uploadWhatsapp"
                 android:layout_width="match_parent"
@@ -231,9 +238,10 @@ tools:context=".sellPage">
                 android:textColor="@color/black"
                 android:ems="10"
                 android:maxLength="10"
-                android:hint="Whatsapp Number"
-                android:drawableRight="@drawable/wp"
-                android:inputType="phone" />
+                android:hint="@string/WhatsappNumber"
+                android:drawableEnd="@drawable/wp"
+                android:inputType="phone"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/myuplodeButton"

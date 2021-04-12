@@ -153,11 +153,11 @@
 
     <ImageView
         android:id="@+id/addCartItemdetails"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="right"
-        android:layout_marginTop="-655dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginTop="-652dp"
+        android:layout_marginRight="7dp"
         android:src="@drawable/cart" />
         </LinearLayout>
     </ScrollView>

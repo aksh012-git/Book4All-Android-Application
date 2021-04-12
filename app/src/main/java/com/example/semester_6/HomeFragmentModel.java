@@ -77,7 +77,11 @@ public class HomeFragmentModel
         this.sellingprice = sellingprice;
     }
 
-    public String getAddress() {
+    public String getAddress()
+    {
+        String y = address.substring(0,1);
+        String x = address.substring(1,address.length());
+        address = y.toUpperCase()+x;
         return address;
     }
 

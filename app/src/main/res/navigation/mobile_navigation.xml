@@ -15,16 +15,16 @@
         android:id="@+id/nav_gallery"
         android:label="Profile"
         android:name="com.example.semester_6.ui.Profile.ProfileFragment"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:label="CoreTeam"
         android:name="com.example.semester_6.ui.CoreTeam.CoreTeamFragment"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_coreteam" />
     <fragment
         android:id="@+id/history"
         android:label="MySoldBooks"
         android:name="com.example.semester_6.mysoldbook"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_mysoldbook" />
 </navigation>

@@ -56,8 +56,14 @@ public class myCart extends AppCompatActivity {
                 String bookNameHome = model.getBookname();
                 if(bookNameHome.length()>15)
                     bookNameHome=bookNameHome.substring(0,15)+"...";
+                String location = model.getAddress();
+                if(location.length()>19)
+                    location=location.substring(0,19)+"...";
 
                 holder.booknameCart.setText(bookNameHome);
+                holder.booksellingCartrow.setText("ForBuy: ₹ "+model.getSellingprice());
+                holder.bookrentingCartrow.setText("ForRent: ₹ "+model.getRentingprice()+" "+model.getRenttime());
+                holder.booklocationCartrow.setText(location);
                 Glide.with(holder.imgUrlCart.getContext()).load(model.getImgUrl()).into(holder.imgUrlCart);
 
                 holder.viewCart.setOnClickListener(new View.OnClickListener() {

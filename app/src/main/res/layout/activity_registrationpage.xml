@@ -13,9 +13,9 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Books4All"
+        android:text="@string/Books4AllName"
         android:textAlignment="center"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textColor="#fff"/>
 
     <androidx.cardview.widget.CardView
@@ -40,9 +40,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="SignUp"
+                    android:text="@string/SignUp"
                     android:textAlignment="center"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:layout_marginTop="10dp"
                     />
 
@@ -55,13 +55,14 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_shap"
-                    android:drawableRight="@drawable/ic_baseline_person_24"
+                    android:drawableEnd="@drawable/ic_baseline_person_24"
                     android:ems="10"
-                    android:hint="Name"
+                    android:hint="@string/Namesu"
                     android:inputType="textPersonName"
                     android:paddingBottom="7dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColorHint="@color/black"
+                    android:autofillHints="" />
 
                 <EditText
                     android:id="@+id/signupPhone"
@@ -73,12 +74,13 @@
                     android:textColorHint="@color/black"
                     android:textColor="@color/black"
                     android:ems="10"
-                    android:hint="Phone"
-                    android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                    android:hint="@string/Phonesu"
+                    android:drawableEnd="@drawable/ic_baseline_phone_android_24"
                     android:inputType="phone"
                     android:maxLength="10"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp"
+                    android:autofillHints="" />
 
                 <EditText
                     android:id="@+id/signupemail"
@@ -88,45 +90,48 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_shap"
-                    android:drawableRight="@drawable/ic_baseline_email_24"
+                    android:drawableEnd="@drawable/ic_baseline_email_24"
                     android:ems="10"
-                    android:hint="Email"
+                    android:hint="@string/Emaillogin"
                     android:inputType="textEmailAddress"
                     android:paddingBottom="7dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColorHint="@color/black"
+                    android:autofillHints="" />
 
                 <EditText
                     android:id="@+id/signuppassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_shap"
-                    android:paddingBottom="7dp"
-                    android:textColorHint="@color/black"
-                    android:textColor="@color/black"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:layout_marginTop="20dp"
-                    android:drawableRight="@drawable/ic_baseline_vpn_key_24"
-                    android:inputType="textPassword"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/edittext_shap"
+                    android:drawableEnd="@drawable/ic_baseline_vpn_key_24"
+                    android:ems="10"
+                    android:hint="@string/Passwordlogin"
+                    android:inputType="textPassword"
+                    android:paddingBottom="7dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:autofillHints="" />
 
                 <EditText
                     android:id="@+id/signupconformpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_shap"
-                    android:paddingBottom="7dp"
-                    android:layout_marginTop="20dp"
-                    android:textColorHint="@color/black"
-                    android:textColor="@color/black"
-                    android:ems="10"
-                    android:hint="Conform Password"
-                    android:inputType="textPassword"
                     android:layout_marginLeft="20dp"
-                    android:drawableRight="@drawable/ic_baseline_vpn_key_24"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/edittext_shap"
+                    android:drawableEnd="@drawable/ic_baseline_vpn_key_24"
+                    android:ems="10"
+                    android:hint="@string/ConformPassword"
+                    android:inputType="textPassword"
+                    android:paddingBottom="7dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:autofillHints="" />
 
                 <ImageView
                     android:id="@+id/signupbutton"
@@ -134,7 +139,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_height="60dp"
                     android:src="@drawable/signup"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/todo" />
 
             </LinearLayout>
         </ScrollView>
@@ -159,10 +165,10 @@
             android:id="@+id/signuptologin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LogIn instead"
+            android:text="@string/LogIninstead"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 </LinearLayout>

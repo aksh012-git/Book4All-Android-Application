@@ -50,6 +50,8 @@ public class HomeFragment extends Fragment {
         seelbuttonjava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                searchView.clearFocus();
+                searchView.setFocusable(false);
                 startActivity(new Intent(getContext(),sellPage.class));
             }
         });
@@ -75,10 +77,16 @@ public class HomeFragment extends Fragment {
             protected void onBindViewHolder(@NonNull HomeFragmentMyViewHolder holder, int position, @NonNull HomeFragmentModel model) {
 
                 String bookNameHome = model.getBookname();
-                if(bookNameHome.length()>15)
-                    bookNameHome=bookNameHome.substring(0,15)+"...";
+                if(bookNameHome.length()>23)
+                    bookNameHome=bookNameHome.substring(0,23)+"...";
+                String location = model.getAddress();
+                if(location.length()>19)
+                    location=location.substring(0,19)+"...";
 
                 holder.bookname.setText(bookNameHome);
+                holder.booksellingHomerow.setText("ForBuy: ₹ "+model.getSellingprice());
+                holder.bookrentingHomerow.setText("ForRent: ₹ "+model.getRentingprice()+" "+model.getRenttime());
+                holder.booklocationHomerow.setText(location);
                 Glide.with(holder.imgUrl.getContext()).load(model.getImgUrl()).into(holder.imgUrl);
                 String mykey = model.getKey();
                 String myUID = model.getMyUID();
@@ -108,7 +116,7 @@ public class HomeFragment extends Fragment {
             @NonNull
             @Override
             public HomeFragmentMyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow,parent,false);
+                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.home_singlerow,parent,false);
                 return new HomeFragmentMyViewHolder(view);
             }
         };
@@ -169,10 +177,16 @@ public class HomeFragment extends Fragment {
             protected void onBindViewHolder(@NonNull HomeFragmentMyViewHolder holder, int position, @NonNull HomeFragmentModel model) {
 
                 String bookNameHome = model.getBookname();
-                if(bookNameHome.length()>15)
-                    bookNameHome=bookNameHome.substring(0,15)+"...";
+                if(bookNameHome.length()>23)
+                    bookNameHome=bookNameHome.substring(0,23)+"...";
+                String location = model.getAddress();
+                if(location.length()>19)
+                    location=location.substring(0,19)+"...";
 
                 holder.bookname.setText(bookNameHome);
+                holder.booksellingHomerow.setText("ForBuy: ₹ "+model.getSellingprice());
+                holder.bookrentingHomerow.setText("ForRent: ₹ "+model.getRentingprice());
+                holder.booklocationHomerow.setText(location);
                 Glide.with(holder.imgUrl.getContext()).load(model.getImgUrl()).into(holder.imgUrl);
                 String mykey = model.getKey();
                 String myUID = model.getMyUID();
@@ -204,7 +218,7 @@ public class HomeFragment extends Fragment {
             @NonNull
             @Override
             public HomeFragmentMyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow,parent,false);
+                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.home_singlerow,parent,false);
                 return new HomeFragmentMyViewHolder(view);
             }
         };

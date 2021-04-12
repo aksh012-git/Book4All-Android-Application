@@ -69,8 +69,8 @@ public class itemDetails_cart extends AppCompatActivity {
                     bookwpnumber = snapshot.child("wpnumber").getValue(String.class);
                     String retntime = snapshot.child("renttime").getValue(String.class);
 
-                    String y = "₹" + bookSellPrice;
-                    String x = "₹" + bookRentPrice;
+                    String y = "₹ " + bookSellPrice;
+                    String x = "₹ " + bookRentPrice;
 
                     bookNameFullDetailsjava.setText(name);
                     bookAuthorFullDetailsjava.setText(bookauth);

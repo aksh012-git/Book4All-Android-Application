@@ -61,8 +61,8 @@ public class itemdetails_mysold extends AppCompatActivity {
                     String bookimgx = snapshot.child("imgUrl").getValue(String.class);
                     String retntime = snapshot.child("renttime").getValue(String.class);
 
-                    String y = "₹" + bookSellPrice;
-                    String x = "₹" + bookRentPrice;
+                    String y = "₹ " + bookSellPrice;
+                    String x = "₹ " + bookRentPrice;
 
                     renttimeFullDetailsJava.setText(retntime);
                     bookNameFullDetailsjava.setText(name);

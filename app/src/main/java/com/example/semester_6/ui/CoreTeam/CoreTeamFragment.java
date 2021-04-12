@@ -19,7 +19,7 @@ public class CoreTeamFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         coreTeamViewModel =
                 new ViewModelProvider(this).get(CoreTeamViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        View root = inflater.inflate(R.layout.fragment_coreteam, container, false);
         return root;
     }
 }

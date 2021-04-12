@@ -109,8 +109,8 @@ public class itemDetails extends AppCompatActivity {
                     bookwpnumber = snapshot.child("wpnumber").getValue(String.class);
                     rentTime = snapshot.child("renttime").getValue(String.class);
 
-                    String y = "₹" + bookSellPrice;
-                    String x = "₹" + bookRentPrice;
+                    String y = "₹ " + bookSellPrice;
+                    String x = "₹ " + bookRentPrice;
 
                     bookNameFullDetailsjava.setText(name);
                     bookAuthorFullDetailsjava.setText(bookauth);

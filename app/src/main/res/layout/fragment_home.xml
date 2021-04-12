@@ -18,10 +18,9 @@
         android:queryHint="@string/searchHint"
         android:iconifiedByDefault="false"
         app:showAsAction="ifRoom|withText"
-        android:textColor="@color/cardview_dark_background"
+        android:textColor="@color/black"
         android:searchIcon="@drawable/ic_baseline_search_24"
         android:background="@drawable/searchview_background"
-        android:queryBackground="@android:color/transparent"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
     <ScrollView
@@ -34,7 +33,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>
     </ScrollView>
@@ -45,7 +44,7 @@
         android:layout_height="80dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/sellbutton"
-        android:text="sell"
+        android:text="@string/sellButton"
 
         android:layout_alignBottom="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
