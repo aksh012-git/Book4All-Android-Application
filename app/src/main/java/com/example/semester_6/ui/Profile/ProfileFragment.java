@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Are you sure?");
-                builder.setMessage("please think more with book4all");
+                builder.setMessage("if you press delete button then your all data will be deleted from Book4All");
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -129,13 +129,14 @@ public class ProfileFragment extends Fragment {
 
                                         }
                                     });
+                                    referenceCart.child(myUID).getRef().removeValue();
                                     //--------------------------------------------------------------------------------------------
                                     Toast.makeText(getContext(),"your Account Deleted", Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(getContext(),MainActivity.class));
                                     getActivity().finish();
                                 }
                                 else {
-                                    Toast.makeText(getContext(),"messss"+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(),"Problem: "+task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

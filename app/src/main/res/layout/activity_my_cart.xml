@@ -7,10 +7,25 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".myCart">
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Cart"
+        android:background="#3aa8c1"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:layout_marginBottom="6dp"
+        android:textAlignment="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/myCartRecview"
         tools:layout_editor_absoluteX="195dp"
         tools:layout_editor_absoluteY="297dp" />
+
+
 </LinearLayout>

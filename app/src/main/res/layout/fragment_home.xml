@@ -18,7 +18,7 @@
         android:queryHint="@string/searchHint"
         android:iconifiedByDefault="false"
         app:showAsAction="ifRoom|withText"
-        android:textColor="@color/black"
+        android:textColor="@color/design_default_color_primary"
         android:searchIcon="@drawable/ic_baseline_search_24"
         android:background="@drawable/searchview_background"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>

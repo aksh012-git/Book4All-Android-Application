@@ -1,6 +1,8 @@
 package com.example.semester_6;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,13 +45,19 @@ import java.io.Console;
 public class nav extends AppCompatActivity {
     Button sellbuttonjava,logouthomejava;
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView myEmailNav;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
+
         mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        //get currentUser
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String EmailHeader = currentUser.getEmail();
         if(mAuth.getCurrentUser()==null){
             startActivity(new Intent(nav.this,MainActivity.class));
             finish();
@@ -66,7 +74,13 @@ public class nav extends AppCompatActivity {
 //            }
 //        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        //----------Nav Header Emai Set--------------------------
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        TextView t1 = header.findViewById(R.id.navEmailText);
+        t1.setText(EmailHeader);
+        //------------------------------------------
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -83,9 +97,23 @@ public class nav extends AppCompatActivity {
         logouthomejava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(nav.this,MainActivity.class));
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(nav.this);
+                builder.setTitle("Tap to Logout");
+                builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(nav.this,MainActivity.class));
+                        finish();
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

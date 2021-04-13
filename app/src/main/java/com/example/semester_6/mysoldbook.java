@@ -1,5 +1,7 @@
 package com.example.semester_6;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -75,27 +77,43 @@ public class mysoldbook extends Fragment {
                         xxxx = model.getKey();
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                         DatabaseReference reference = firebaseDatabase.getReference("books4All").child("booksDetails");
-                        reference.child(xxxx).removeValue();
-
-                        DatabaseReference reference23 = firebaseDatabase.getReference("books4All").child("Cart");
-                        reference23.addValueEventListener(new ValueEventListener() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("Are you sure?");
+                        builder.setMessage("you want to delete your book "+model.getBookname());
+                        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for(DataSnapshot snapshotCart:snapshot.getChildren()){
-                                    for(DataSnapshot snapshot1:snapshotCart.getChildren()){
-                                        if(snapshot1.getKey().equals(xxxx)){
-                                            snapshot1.getRef().removeValue();
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                reference.child(xxxx).removeValue();
+
+                                DatabaseReference reference23 = firebaseDatabase.getReference("books4All").child("Cart");
+                                reference23.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for(DataSnapshot snapshotCart:snapshot.getChildren()){
+                                            for(DataSnapshot snapshot1:snapshotCart.getChildren()){
+                                                if(snapshot1.getKey().equals(xxxx)){
+                                                    snapshot1.getRef().removeValue();
+                                                }
+                                            }
                                         }
                                     }
-                                }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
 
+                                    }
+                                });
                             }
                         });
+                       builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
 
+                               dialogInterface.dismiss();
+                           }
+                       });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
                     }
                 });
             }

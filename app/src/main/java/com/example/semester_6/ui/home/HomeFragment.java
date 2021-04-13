@@ -1,6 +1,7 @@
     package com.example.semester_6.ui.home;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -67,6 +69,9 @@ public class HomeFragment extends Fragment {
 
 
         searchView.setQueryHint(Html.fromHtml("<font color = #b4a5a5>" + getResources().getString(R.string.searchHint) + "</font>"));
+        int id =  searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) searchView.findViewById(id);
+        textView.setTextColor(Color.BLACK);
 //firebase Ui options--------------------------------------------
         options = new  FirebaseRecyclerOptions.Builder<HomeFragmentModel>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("books4All").child("booksDetails"), HomeFragmentModel.class)
@@ -185,7 +190,7 @@ public class HomeFragment extends Fragment {
 
                 holder.bookname.setText(bookNameHome);
                 holder.booksellingHomerow.setText("ForBuy: ₹ "+model.getSellingprice());
-                holder.bookrentingHomerow.setText("ForRent: ₹ "+model.getRentingprice());
+                holder.bookrentingHomerow.setText("ForRent: ₹ "+model.getRentingprice()+" "+model.getRenttime());
                 holder.booklocationHomerow.setText(location);
                 Glide.with(holder.imgUrl.getContext()).load(model.getImgUrl()).into(holder.imgUrl);
                 String mykey = model.getKey();
