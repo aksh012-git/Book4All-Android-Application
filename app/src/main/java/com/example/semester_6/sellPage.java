@@ -36,7 +36,7 @@ import java.security.SecurityPermission;
 import java.util.HashMap;
 
 public class sellPage extends AppCompatActivity {
-    private Button uplodeButtonjava;
+    private ImageView uplodeButtonjava;
     private EditText bookNamejava,authornamejava,booktypejava,rentingjava,sellingjava,addadressjava,zipcodejava,uploadWhatsappjava;
     private ImageView uploadImage;
     private FirebaseAuth mAuth;

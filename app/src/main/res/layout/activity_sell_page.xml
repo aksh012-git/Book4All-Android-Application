@@ -40,34 +40,30 @@ tools:context=".sellPage">
                 android:textColor="#3aa8c1"
                 android:textSize="30sp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:background="#000"
-                android:textSize="2sp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center_horizontal"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:background="@color/design_default_color_primary_dark"
+                android:paddingTop="5dp"
+                android:background="@drawable/searchview_background"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/uploadImg"
                     android:gravity="center"
-                    android:textColor="#fff"
-                    android:textSize="25sp"/>
-            <ImageView
+                    android:text="@string/uploadImg"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
                 android:id="@+id/uploadBookImg"
                 android:layout_width="wrap_content"
                 android:layout_height="160dp"
@@ -243,17 +239,14 @@ tools:context=".sellPage">
                 android:inputType="phone"
                 android:autofillHints="" />
 
-            <Button
+            <ImageView
                 android:id="@+id/myuplodeButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/uplode"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:src="@drawable/sellnow"/>
+
         </LinearLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>

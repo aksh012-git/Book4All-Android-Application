@@ -35,7 +35,7 @@
     <string name="mvr">Manavadar</string>
     <string name="logout">Logout</string>
     <string name="baccktohome">Home</string>
-    <string name="UplodeDetails">Upload Details</string>
+    <string name="UplodeDetails">Upload details</string>
     <string name="authorName">Author Name</string>
     <string name="bookname">Book Name</string>
     <string name="sellingprice">Selling Price(₹)</string>
@@ -51,7 +51,7 @@
     <string name="upload">Upload</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
-    <string name="uploadImg">Click and Upload Book Image</string>
+    <string name="uploadImg">Click and upload book image</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="searchHint">Search bookname hear...</string>
@@ -78,4 +78,6 @@
         <item>Per Month</item>
         <item>per year</item>
     </string-array>
+    <string name="ak">Aksh Maradiya is currently doing B.Tech CE at GUNI Mehsana. He handle whole of database, backend system and fix error of Book4All</string>
+    <string name="vs">Vasu Hudka is a student at GUNI Mehsana  doing B.Tech in CE. He handle whole of design and checked out some senario of Books4All </string>
 </resources>

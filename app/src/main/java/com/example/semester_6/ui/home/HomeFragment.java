@@ -35,7 +35,7 @@ import java.util.HashMap;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
-    Button seelbuttonjava;
+    TextView seelbuttonjava;
     RecyclerView recView;
     private FirebaseRecyclerOptions<HomeFragmentModel> options;
     private FirebaseRecyclerAdapter<HomeFragmentModel, HomeFragmentMyViewHolder> adapter;
