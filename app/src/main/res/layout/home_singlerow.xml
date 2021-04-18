@@ -33,15 +33,6 @@
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="-114dp"/>
 
-            <ImageView
-                android:id="@+id/successFullAdd"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/success"
-                android:layout_gravity="right"
-                android:layout_marginTop="-55dp"
-                android:layout_marginRight="6dp"
-                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout

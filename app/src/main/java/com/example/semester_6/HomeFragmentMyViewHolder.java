@@ -17,7 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class HomeFragmentMyViewHolder extends RecyclerView.ViewHolder
 {
     public TextView bookname,booksellingHomerow,bookrentingHomerow,booklocationHomerow;
-    public ImageView imgUrl,myCartAdd,successFull;
+    public ImageView imgUrl,myCartAdd;
     public View view;
     public HomeFragmentMyViewHolder(@NonNull View itemView)
     {
@@ -25,7 +25,6 @@ public class HomeFragmentMyViewHolder extends RecyclerView.ViewHolder
         bookname = itemView.findViewById(R.id.bookname);
         imgUrl = itemView.findViewById(R.id.bookImg);
         myCartAdd = itemView.findViewById(R.id.myCart);
-        successFull = itemView.findViewById(R.id.successFullAdd);
         booksellingHomerow = itemView.findViewById(R.id.sellingPriceHomerow);
         bookrentingHomerow = itemView.findViewById(R.id.rentingPriceHomerow);
         booklocationHomerow = itemView.findViewById(R.id.locationHomerow);

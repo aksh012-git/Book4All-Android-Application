@@ -73,12 +73,11 @@ public class itemDetails_cart extends AppCompatActivity {
                     String x = "₹ " + bookRentPrice;
 
                     bookNameFullDetailsjava.setText(name);
-                    bookAuthorFullDetailsjava.setText(bookauth);
-                    bookTypeFullDetailsjava.setText(booktype);
+                    bookAuthorFullDetailsjava.setText("Author: "+bookauth);
+                    bookTypeFullDetailsjava.setText("Book Type: "+booktype);
                     bookRentingFullDetailsJava.setText("Renting Price: " + x);
-                    bookSellingFullDetailsJava.setText("Selling Price: " + y);
-                    bookAdressFullDetailsJava.setText(bookAdrress);
-                    bookZipcodeFullDetailsJava.setText(bookZip);
+                    bookSellingFullDetailsJava.setText("Selling Price :" + y);
+                    bookZipcodeFullDetailsJava.setText(bookAdrress +","+ bookZip);
                     renttimeFullDetailsJava.setText(retntime);
                     Glide.with(bookimg.getContext()).load(bookimgx).into(bookimg);
                 }

@@ -66,12 +66,11 @@ public class itemdetails_mysold extends AppCompatActivity {
 
                     renttimeFullDetailsJava.setText(retntime);
                     bookNameFullDetailsjava.setText(name);
-                    bookAuthorFullDetailsjava.setText(bookauth);
-                    bookTypeFullDetailsjava.setText(booktype);
+                    bookAuthorFullDetailsjava.setText("Author: "+bookauth);
+                    bookTypeFullDetailsjava.setText("Book Type: "+booktype);
                     bookRentingFullDetailsJava.setText("Renting Price: " + x);
-                    bookSellingFullDetailsJava.setText("Selling Price: " + y);
-                    bookAdressFullDetailsJava.setText(bookAdrress);
-                    bookZipcodeFullDetailsJava.setText(bookZip);
+                    bookSellingFullDetailsJava.setText("Selling Price :" + y);
+                    bookZipcodeFullDetailsJava.setText(bookAdrress +","+ bookZip);
                     Glide.with(bookimg.getContext()).load(bookimgx).into(bookimg);
                 }
             }

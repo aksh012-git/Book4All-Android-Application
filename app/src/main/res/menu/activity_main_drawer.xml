@@ -18,10 +18,18 @@
             android:icon="@drawable/ic_baseline_history_24"
             android:title="My Sold Books"
             />
+    <item android:title="About Us">
+        <menu>
+        <item
+            android:id="@+id/aboutapp"
+            android:icon="@drawable/ic_baseline_phone_android_241"
+            android:title="about app"
+            />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_baseline_group_work_24"
             android:title="@string/coreteam" />
-
+        </menu>
+    </item>
     </group>
 </menu>

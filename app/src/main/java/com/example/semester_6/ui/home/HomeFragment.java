@@ -82,11 +82,11 @@ public class HomeFragment extends Fragment {
             protected void onBindViewHolder(@NonNull HomeFragmentMyViewHolder holder, int position, @NonNull HomeFragmentModel model) {
 
                 String bookNameHome = model.getBookname();
-                if(bookNameHome.length()>23)
-                    bookNameHome=bookNameHome.substring(0,23)+"...";
+                if(bookNameHome.length()>20)
+                    bookNameHome=bookNameHome.substring(0,20)+"...";
                 String location = model.getAddress();
-                if(location.length()>19)
-                    location=location.substring(0,19)+"...";
+                if(location.length()>17)
+                    location=location.substring(0,17)+"...";
 
                 holder.bookname.setText(bookNameHome);
                 holder.booksellingHomerow.setText("ForBuy: ₹ "+model.getSellingprice());

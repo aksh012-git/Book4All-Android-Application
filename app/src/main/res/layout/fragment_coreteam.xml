@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#3aa8c1"
     android:orientation="vertical"
     tools:context=".ui.CoreTeam.CoreTeamFragment">
@@ -17,14 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="290dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="2dp"
-                android:src="@drawable/indiamap1" />
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
@@ -33,8 +25,9 @@
                 android:textSize="25dp"
                 android:textAlignment="center"
                 android:textColor="#fff"
-                android:layout_marginTop="-15dp"
                 android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,34 +41,15 @@
                     android:layout_height="wrap_content"
                     android:text="Mr. Aksh Maradiya"
                     android:textColor="#fff"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="65dp"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="15dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="60dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:id="@+id/linkdinaksh"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="5dp"
-                        android:src="@drawable/linkdin"/>
-                    <ImageView
-                        android:id="@+id/instaaksh"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/insa"/>
-                </LinearLayout>
             </LinearLayout>
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/akak"
+                android:src="@drawable/akshimg"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="-120dp"/>
 
@@ -89,11 +63,39 @@
                 android:text="@string/ak"
                 android:textColor="#fff"
                 android:textSize="15dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/linkdinaksh"
+                    android:layout_width="31dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/linkdin" />
+                <ImageView
+                    android:id="@+id/instaaksh"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/instagram"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#696969"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="55dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:background="@drawable/gradiant">
@@ -106,32 +108,13 @@
                     android:layout_marginLeft="60dp"
                     android:textStyle="bold"
                     android:textSize="15dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginTop="3dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:id="@+id/linkdinvasu"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="5dp"
-                        android:src="@drawable/linkdin"/>
-                    <ImageView
-                        android:id="@+id/instavasu"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/insa"/>
-                </LinearLayout>
             </LinearLayout>
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/vasu"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="-120dp"/>
+                android:layout_marginTop="-115dp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -143,6 +126,25 @@
                 android:text="@string/vs"
                 android:textColor="#fff"
                 android:textSize="15dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/linkdinvasu"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/linkdin"/>
+                <ImageView
+                    android:id="@+id/instavasu"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/instagram"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

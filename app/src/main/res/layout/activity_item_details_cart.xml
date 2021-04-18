@@ -5,9 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="#e6f5ff"
     tools:context=".itemDetails_cart">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mainlinear1"
+            android:padding="5dp"
+            android:orientation="vertical">
     <ImageView
         android:id="@+id/bookImgfullDetailsCart"
         android:layout_width="match_parent"
@@ -30,25 +39,28 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#53354a">
+        android:padding="7dp"
+        android:background="@drawable/itemfulldetailbackground">
 
         <TextView
             android:id="@+id/bookAuthorFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff" />
+            android:textColor="#000" />
 
         <TextView
             android:id="@+id/bookTypeFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff" />
+            android:textColor="#000"
+            />
 
         <TextView
             android:id="@+id/bookSellingFullDetailsCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff" />
+            android:textColor="#000"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,26 +71,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
-                android:textColor="#fff" />
+                android:textColor="#000"
+                />
             <TextView
                 android:id="@+id/renttimeFullDetailsCart"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textColor="#fff"/>
+                android:textColor="#000"
+                />
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/bookAdressFullDetailsCart"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff" />
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/bookAdressFullDetailsCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"/>
 
-        <TextView
-            android:id="@+id/bookZipcodeFullDetailsCart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#fff" />
+            <TextView
+                android:id="@+id/bookZipcodeFullDetailsCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -90,12 +110,13 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#53354a">
+        android:padding="7dp"
+        android:background="@drawable/itemfulldetailbackground">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:text="Book Seller"
             android:textAlignment="center"
             android:textSize="20dp"
@@ -105,20 +126,22 @@
             android:id="@+id/userNameCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
+            android:textColor="#000"
             />
 
         <TextView
             android:id="@+id/userEmailCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff" />
+            android:textColor="#000"
+            />
 
         <TextView
             android:id="@+id/userPhoneCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff" />
+            android:textColor="#000"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -151,5 +174,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp">
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
