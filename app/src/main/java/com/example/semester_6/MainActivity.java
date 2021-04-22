@@ -3,10 +3,13 @@ package com.example.semester_6;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -28,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar bar;
     //create auth var
     private FirebaseAuth mAuth;
-    private TextView logintosignupjava;
+    private TextView logintosignupjava,forgotpassjava;
     ImageView gohomejava;
-    private TextView verifymessage,verifiyButtonText;
+    private TextView verifymessage,verifiyButtonText,verifiytext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,15 +54,21 @@ public class MainActivity extends AppCompatActivity {
 
         verifymessage = findViewById(R.id.verifymessage);
         verifiyButtonText = findViewById(R.id.verifiybuttonText);
+        verifiytext = findViewById(R.id.verifiytext);
+
+        forgotpassjava = findViewById(R.id.forgotpass);
+
         Intent i = new Intent(getIntent());
         boolean xx = i.getBooleanExtra("flag",false);
         if (xx==true){
             verifymessage.setVisibility(View.VISIBLE);
             verifiyButtonText.setVisibility(View.VISIBLE);
+            verifiytext.setVisibility(View.VISIBLE);
         }
         else {
-            verifymessage.setVisibility(View.INVISIBLE);
-            verifiyButtonText.setVisibility(View.INVISIBLE);
+            verifymessage.setVisibility(View.GONE);
+            verifiyButtonText.setVisibility(View.GONE);
+            verifiytext.setVisibility(View.GONE);
         }
 
         if(mAuth.getCurrentUser()!=null){
@@ -68,8 +77,50 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }else {
                 Toast.makeText(MainActivity.this, "User Is not Verifyd!!!", Toast.LENGTH_SHORT).show();
+                verifymessage.setVisibility(View.VISIBLE);
+                verifiyButtonText.setVisibility(View.VISIBLE);
+                verifiytext.setVisibility(View.VISIBLE);
             }
         }
+
+        forgotpassjava.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+                View view1 = inflater.inflate(R.layout.forgotpassword,null);
+                EditText editmail = view1.findViewById(R.id.editemail);
+                editmail.setText(emailloginjava.getText().toString());
+                builder.setView(view1).setPositiveButton("reset", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(editmail.getText().toString().isEmpty()){
+                            Toast.makeText(MainActivity.this,"Please enter email", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            mAuth.sendPasswordResetEmail(editmail.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(MainActivity.this, "Password reset link sent to your email account", Toast.LENGTH_LONG).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(MainActivity.this, "Somthin went wrong! " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    }
+                }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
         verifiyButtonText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,11 +176,17 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Authentication success..", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(MainActivity.this, nav.class));
                         bar.setVisibility(View.INVISIBLE);
+                        verifymessage.setVisibility(View.GONE);
+                        verifiyButtonText.setVisibility(View.GONE);
+                        verifiytext.setVisibility(View.GONE);
                         finish();
                     }
                     else {
                         Toast.makeText(MainActivity.this, "User Is not Verify!!!", Toast.LENGTH_LONG).show();
                         bar.setVisibility(View.INVISIBLE);
+                        verifymessage.setVisibility(View.VISIBLE);
+                        verifiyButtonText.setVisibility(View.VISIBLE);
+                        verifiytext.setVisibility(View.VISIBLE);
                     }
                 }
                 else {
@@ -141,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(MainActivity.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
-                Log.d("-->>",e.getMessage());
                 bar.setVisibility(View.INVISIBLE);
             }
         });

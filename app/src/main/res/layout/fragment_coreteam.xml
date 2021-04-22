@@ -76,7 +76,7 @@
                     android:layout_width="31dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="8dp"
-                    android:src="@drawable/linkdin" />
+                    android:src="@drawable/linkdin"/>
                 <ImageView
                     android:id="@+id/instaaksh"
                     android:layout_width="30dp"
@@ -138,12 +138,14 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="8dp"
-                    android:src="@drawable/linkdin"/>
+                    android:src="@drawable/linkdin"
+                />
                 <ImageView
                     android:id="@+id/instavasu"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/instagram"/>
+                    android:src="@drawable/instagram"
+             />
             </LinearLayout>
 
         </LinearLayout>

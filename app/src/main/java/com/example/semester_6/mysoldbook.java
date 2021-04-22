@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
 public class mysoldbook extends Fragment {
@@ -77,12 +79,14 @@ public class mysoldbook extends Fragment {
                         xxxx = model.getKey();
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                         DatabaseReference reference = firebaseDatabase.getReference("books4All").child("booksDetails");
+                        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(model.imgUrl);
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setTitle("Are you sure?");
                         builder.setMessage("you want to delete your book "+model.getBookname());
                         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                storageReference.delete();
                                 reference.child(xxxx).removeValue();
 
                                 DatabaseReference reference23 = firebaseDatabase.getReference("books4All").child("Cart");

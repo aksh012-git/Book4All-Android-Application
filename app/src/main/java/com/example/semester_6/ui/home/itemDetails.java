@@ -3,10 +3,12 @@ package com.example.semester_6.ui.home;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,6 +38,8 @@ public class itemDetails extends AppCompatActivity {
     private Button chatBtn,callBtn;
     private   String userPhone,bookwpnumber;
     private FirebaseAuth mAuth;
+    private String profileimg;
+    private ImageView profile_image;
     private String name,bookauth,booktype,bookRentPrice,bookSellPrice,bookAdrress,bookZip,bookimgx,keyitemdetail,myUID,rentTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,8 @@ public class itemDetails extends AppCompatActivity {
         chatBtn = findViewById(R.id.chatWp);
         callBtn = findViewById(R.id.callButton);
 
+        profile_image  = findViewById(R.id.profileimgitemdetails);
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String myItemDetailsHome = currentUser.getUid();
@@ -77,6 +83,10 @@ public class itemDetails extends AppCompatActivity {
                     String userName = snapshot.child("name").getValue(String.class);
                     String userEmail = snapshot.child("email").getValue(String.class);
                     userPhone = snapshot.child("phone").getValue(String.class);
+                    profileimg = snapshot.child("profileurl").getValue(String.class);
+                    if(profileimg!=null) {
+                        Glide.with(profile_image.getContext()).load(profileimg).into(profile_image);
+                    }
                     userNameJava.setText(userName);
                     userEmailJava.setText(userEmail);
                     userPhoneJava.setText(userPhone);
@@ -89,9 +99,22 @@ public class itemDetails extends AppCompatActivity {
             }
         });
 
+        profile_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(itemDetails.this);
+                LayoutInflater inflater = itemDetails.this.getLayoutInflater();
+                View view2 = inflater.inflate(R.layout.seefullprofile,null);
+                ImageView myimgfullsee = view2.findViewById(R.id.seefullimg);
+                Glide.with(myimgfullsee.getContext()).load(profileimg).into(myimgfullsee);
+                builder.setView(view2);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
-
-        DatabaseReference reference = firebaseDatabase.getReference("books4All").child("booksDetails").child(mykey);
+        FirebaseDatabase firebaseDatabase2 = FirebaseDatabase.getInstance();
+        DatabaseReference reference = firebaseDatabase2.getReference("books4All").child("booksDetails").child(mykey);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

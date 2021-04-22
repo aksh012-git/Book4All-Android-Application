@@ -16,13 +16,10 @@ import com.example.semester_6.R;
 
 public class CoreTeamFragment extends Fragment {
 
-    private CoreTeamViewModel coreTeamViewModel;
+
     private ImageView linkdinaksh,instaaksh,linkdinvasu,instavasu;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        coreTeamViewModel =
-                new ViewModelProvider(this).get(CoreTeamViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_coreteam, container, false);
         linkdinaksh = root.findViewById(R.id.linkdinaksh);
         linkdinvasu = root.findViewById(R.id.linkdinvasu);
@@ -32,13 +29,13 @@ public class CoreTeamFragment extends Fragment {
         linkdinaksh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goUrl("https://www.linkedin.com/in/maradiya-aksh-015a49187");
+                goUrl("https://www.linkedin.com/in/aksh-maradiya-015a49187");
             }
         });
         linkdinvasu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goUrl("");
+                goUrl("https://www.linkedin.com/in/vasu-hudka-21a26a210");
             }
         });
         instaaksh.setOnClickListener(new View.OnClickListener() {

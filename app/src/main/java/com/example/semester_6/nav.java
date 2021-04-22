@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -12,11 +13,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.semester_6.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -47,6 +50,9 @@ public class nav extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private TextView myEmailNav;
     private FirebaseAuth mAuth;
+    private String profileimg;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private ImageView profile_imagedrawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +60,21 @@ public class nav extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        mAuth = FirebaseAuth.getInstance();
         //get currentUser
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        String myUIDnav = currentUser.getUid();
+        DatabaseReference reference= firebaseDatabase.getReference("books4All").child("userData").child(myUIDnav);
+
         String EmailHeader = currentUser.getEmail();
         if(mAuth.getCurrentUser()==null){
             startActivity(new Intent(nav.this,MainActivity.class));
             finish();
         }
+
+
+
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,6 +93,41 @@ public class nav extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
         TextView t1 = header.findViewById(R.id.navEmailText);
         t1.setText(EmailHeader);
+        profile_imagedrawer = header.findViewById(R.id.profile_imagedrawer);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                profileimg = snapshot.child("profileurl").getValue(String.class);
+                if(profileimg!=null) {
+                    Glide.with(profile_imagedrawer.getContext()).load(profileimg).into(profile_imagedrawer);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        profile_imagedrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        profileimg = snapshot.child("profileurl").getValue(String.class);
+                        if(profileimg!=null) {
+                            Glide.with(profile_imagedrawer.getContext()).load(profileimg).into(profile_imagedrawer);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
+
+
         //------------------------------------------
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -90,6 +138,7 @@ public class nav extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
 
         //logout button
         logouthomejava = findViewById(R.id.logoutHome);

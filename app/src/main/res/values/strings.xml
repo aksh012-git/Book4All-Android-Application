@@ -79,5 +79,8 @@
         <item>per year</item>
     </string-array>
     <string name="ak">Aksh Maradiya is currently doing B.Tech CE at GUNI Mehsana. He handle whole of database, backend system and fix error of Book4All</string>
+    <string name="aboutapp">Team want to develop this system because  many people can’t buy new books every time so they can purchase old books and also sell these books again.
+        Easily create network between different users.You can contact to your favourite user easily.
+</string>
     <string name="vs">Vasu Hudka is a student at GUNI Mehsana  doing B.Tech in CE. He handle whole of design and checked out some senario of Books4All </string>
 </resources>

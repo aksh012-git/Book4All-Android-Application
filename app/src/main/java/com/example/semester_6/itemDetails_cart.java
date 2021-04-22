@@ -3,10 +3,12 @@ package com.example.semester_6;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.semester_6.ui.home.itemDetails;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +29,8 @@ public class itemDetails_cart extends AppCompatActivity {
     private Intent intent;
     private ImageView bookimg;
     private Button chatBtn,callBtn;
+    private ImageView profile_image;
+    private String profileimg;
     private   String userPhone,bookwpnumber ,name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,9 @@ public class itemDetails_cart extends AppCompatActivity {
         bookimg = findViewById(R.id.bookImgfullDetailsCart);
         callBtn = findViewById(R.id.callbtnCart);
         chatBtn = findViewById(R.id.chatWpCart);
+
+        profile_image  = findViewById(R.id.profileimgitemdetailscart);
+
 
         intent = new Intent(getIntent());
         String mykeyCart = intent.getStringExtra("key");
@@ -95,6 +103,10 @@ public class itemDetails_cart extends AppCompatActivity {
                     String userName = snapshot.child("name").getValue(String.class);
                     String userEmail = snapshot.child("email").getValue(String.class);
                     userPhone = snapshot.child("phone").getValue(String.class);
+                    profileimg = snapshot.child("profileurl").getValue(String.class);
+                    if(profileimg!=null) {
+                        Glide.with(profile_image.getContext()).load(profileimg).into(profile_image);
+                    }
                     userNameJava.setText(userName);
                     userEmailJava.setText(userEmail);
                     userPhoneJava.setText(userPhone);
@@ -104,6 +116,20 @@ public class itemDetails_cart extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(itemDetails_cart.this, "Error:"+error, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        profile_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(itemDetails_cart.this);
+                LayoutInflater inflater = itemDetails_cart.this.getLayoutInflater();
+                View view2 = inflater.inflate(R.layout.seefullprofile,null);
+                ImageView myimgfullsee = view2.findViewById(R.id.seefullimg);
+                Glide.with(myimgfullsee.getContext()).load(profileimg).into(myimgfullsee);
+                builder.setView(view2);
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

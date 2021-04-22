@@ -124,24 +124,35 @@
 
         <TextView
             android:id="@+id/userNameCart"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:textColor="#000"
             />
 
         <TextView
             android:id="@+id/userEmailCart"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:textColor="#000"
             />
 
         <TextView
             android:id="@+id/userPhoneCart"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:textColor="#000"
             />
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profileimgitemdetailscart"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="-75dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/man_icon"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#fff"/>
     </LinearLayout>
 
     <LinearLayout

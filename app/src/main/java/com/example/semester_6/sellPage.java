@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.MimeTypeMap;
@@ -41,9 +43,10 @@ public class sellPage extends AppCompatActivity {
     private ImageView uploadImage;
     private FirebaseAuth mAuth;
     private Uri imageUri;
-    private ProgressBar bar;
     private Spinner rentingSpinner;
     private String sppinervalue;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
     private StorageReference storage = FirebaseStorage.getInstance().getReference();
 
     @Override
@@ -60,7 +63,6 @@ public class sellPage extends AppCompatActivity {
         addadressjava = findViewById(R.id.uploadAddress);
         zipcodejava = findViewById(R.id.uploadZipcode);
         uploadImage = findViewById(R.id.uploadBookImg);
-        bar = findViewById(R.id.sellprogressBar);
         uploadWhatsappjava = findViewById(R.id.uploadWhatsapp);
         rentingSpinner = findViewById(R.id.spinner);
 
@@ -84,7 +86,6 @@ public class sellPage extends AppCompatActivity {
         uplodeButtonjava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bar.setVisibility(View.VISIBLE);
                 bookNamejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 authornamejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 booktypejava.onEditorAction(EditorInfo.IME_ACTION_DONE);
@@ -108,12 +109,18 @@ public class sellPage extends AppCompatActivity {
                 ||rentingjava.getText().toString().isEmpty()||sellingjava.getText().toString().isEmpty()||addadressjava.getText().toString().isEmpty()
                 ||zipcodejava.getText().toString().isEmpty()||uploadWhatsappjava.getText().toString().isEmpty()){
                     Toast.makeText(sellPage.this,"fill all details properly",Toast.LENGTH_SHORT).show();
-                    bar.setVisibility(View.INVISIBLE);
                 }
                 else if (imageUri !=null){
-                    addBookDetails(bookname,authorname,booktype,rentingprice,sellingprice,address,zipcode,myUID,imageUri,wpNumber);}
+                    builder = new AlertDialog.Builder(sellPage.this);
+                    builder.setCancelable(false);
+                    LayoutInflater inflater = sellPage.this.getLayoutInflater();
+                    View viewsell = inflater.inflate(R.layout.prograssbar,null);
+                    builder.setView(viewsell);
+                    dialog = builder.create();
+                    dialog.show();
+                    addBookDetails(bookname,authorname,booktype,rentingprice,sellingprice,address,zipcode,myUID,imageUri,wpNumber);
+                }
                 else {
-                    bar.setVisibility(View.INVISIBLE);
                     Toast.makeText(sellPage.this, "Please select Image", Toast.LENGTH_LONG).show();
                 }
 
@@ -169,12 +176,19 @@ public class sellPage extends AppCompatActivity {
                         public void onSuccess(Uri uri) {
                             map.put("imgUrl", String.valueOf(uri));
                             reference.setValue(map);
-                            bar.setVisibility(View.GONE);
+                            dialog.dismiss();
                             Toast.makeText(sellPage.this, "Book details added successfully", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(sellPage.this, nav.class);
                             startActivity(intent);
+                            finish();
                         }
                     });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(sellPage.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
                 }
             });
         }

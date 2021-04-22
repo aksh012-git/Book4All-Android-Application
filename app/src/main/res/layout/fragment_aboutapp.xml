@@ -6,11 +6,55 @@
     android:orientation="vertical"
     android:background="#3aa8c1"
     tools:context=".aboutapp">
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="290dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/indiamap" />
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:textSize="16dp"
+        android:textColor="#fff"
+        android:justificationMode="inter_word"
+        android:text="@string/aboutapp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#696969"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:civ_border_width="2dp"
+        android:layout_marginTop="20dp"
+        app:civ_border_color="#fff"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Love books just like your friends..!! \n Get it from here ♥"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:layout_marginTop="6dp"
+        android:textSize="18dp"/>
+</LinearLayout>
+
 </LinearLayout>
