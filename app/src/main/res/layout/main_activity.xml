@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#3aa8c1"
+    tools:context=".loginactivity">
+    <TextView
+        android:id="@+id/toptxt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/Books4AllName"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textColor="#fff"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="60dp" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="175dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/logosplash"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#fff"/>
+    <TextView
+        android:id="@+id/lefttxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Love books just like your friends..!!"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:paddingTop="5dp"
+        android:layout_marginTop="6dp"
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/righttxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get it from here ♥"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/bottomtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:layout_marginTop="200dp"
+        android:text="Books purchase, selling and renting app"/>
+</LinearLayout>

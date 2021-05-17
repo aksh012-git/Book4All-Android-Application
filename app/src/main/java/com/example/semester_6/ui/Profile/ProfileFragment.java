@@ -52,7 +52,6 @@ import java.util.HashMap;
 import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends Fragment {
-private ProfileViewModel profileViewModel;
 private ProgressBar bar;
 TextView hedaNamejava,nameprofilejava,emailprofilejava,phoneprofilejava;
 private FirebaseAuth mAuth;
@@ -68,10 +67,7 @@ private ImageView aditprofilepic,profile_image;
 private StorageReference storage = FirebaseStorage.getInstance().getReference();
 public View onCreateView(@NonNull LayoutInflater inflater,
                      ViewGroup container, Bundle savedInstanceState) {
-
-profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
 
 mAuth = FirebaseAuth.getInstance();
 //get currentUser
@@ -320,7 +316,7 @@ if (requestCode==2 && resultCode==RESULT_OK && data!=null){
     builder.setCancelable(false);
     LayoutInflater inflater = getActivity().getLayoutInflater();
     View viewsell = inflater.inflate(R.layout.prograssbar,null);
-    builder.setView(viewsell);
+    builder.setView(viewsell).setTitle("Profile image uploading");
     dialog = builder.create();
     dialog.show();
 

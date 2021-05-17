@@ -41,22 +41,13 @@ public class HomeFragment extends Fragment {
     private FirebaseRecyclerAdapter<HomeFragmentModel, HomeFragmentMyViewHolder> adapter;
     private FirebaseAuth mAuth;
     SearchView searchView;
-    private AlertDialog.Builder builder;
-    private AlertDialog dialog;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable(false);
-        LayoutInflater inflater1 = getActivity().getLayoutInflater();
-        View viewsell = inflater1.inflate(R.layout.prograssbar,null);
-        builder.setView(viewsell);
-        dialog = builder.create();
-        dialog.show();
+        
 
         seelbuttonjava = root.findViewById(R.id.sellButton);
         seelbuttonjava.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +81,6 @@ public class HomeFragment extends Fragment {
         adapter = new FirebaseRecyclerAdapter<HomeFragmentModel, HomeFragmentMyViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull HomeFragmentMyViewHolder holder, int position, @NonNull HomeFragmentModel model) {
-                dialog.show();
                 String bookNameHome = model.getBookname();
                 if(bookNameHome.length()>20)
                     bookNameHome=bookNameHome.substring(0,20)+"...";
@@ -103,7 +93,6 @@ public class HomeFragment extends Fragment {
                 holder.bookrentingHomerow.setText("ForRent: ₹ "+model.getRentingprice()+" "+model.getRenttime());
                 holder.booklocationHomerow.setText(location);
                 Glide.with(holder.imgUrl.getContext()).load(model.getImgUrl()).into(holder.imgUrl);
-                dialog.dismiss();
                 String mykey = model.getKey();
                 String myUID = model.getMyUID();
                 holder.view.setOnClickListener(new View.OnClickListener() {

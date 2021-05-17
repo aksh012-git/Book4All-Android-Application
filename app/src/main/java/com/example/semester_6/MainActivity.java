@@ -1,205 +1,48 @@
 package com.example.semester_6;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.os.Handler;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    EditText emailloginjava,passwordloginjava;
-    private ProgressBar bar;
-    //create auth var
-    private FirebaseAuth mAuth;
-    private TextView logintosignupjava,forgotpassjava;
-    ImageView gohomejava;
-    private TextView verifymessage,verifiyButtonText,verifiytext;
+    private static int Splash_screen = 5000;
+    Animation topanim,bottomanim,leftanim,rightanim;
+    TextView bottomtxt,toptxt,lefttxt,righttxt;;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.main_activity);
 
-        //find button
-        gohomejava = findViewById(R.id.loginbutton);
-        logintosignupjava = findViewById(R.id.logintosignup);
+        bottomtxt = findViewById(R.id.bottomtxt);
+        toptxt = findViewById(R.id.toptxt);
+        lefttxt = findViewById(R.id.lefttxt);
+        righttxt = findViewById(R.id.righttxt);
 
-        //find edtitext
-        emailloginjava = findViewById(R.id.loginemail);
-        passwordloginjava = findViewById(R.id.loginpassword);
+        topanim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        bottomanim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        leftanim = AnimationUtils.loadAnimation(this,R.anim.left_anim);
+        rightanim = AnimationUtils.loadAnimation(this,R.anim.right_anim);
 
-        bar = findViewById(R.id.proBarLogin);
+        toptxt.setAnimation(topanim);
+        bottomtxt.setAnimation(bottomanim);
+        lefttxt.setAnimation(leftanim);
+        righttxt.setAnimation(rightanim);
 
-        //init auth
-        mAuth = FirebaseAuth.getInstance();
-
-        verifymessage = findViewById(R.id.verifymessage);
-        verifiyButtonText = findViewById(R.id.verifiybuttonText);
-        verifiytext = findViewById(R.id.verifiytext);
-
-        forgotpassjava = findViewById(R.id.forgotpass);
-
-        Intent i = new Intent(getIntent());
-        boolean xx = i.getBooleanExtra("flag",false);
-        if (xx==true){
-            verifymessage.setVisibility(View.VISIBLE);
-            verifiyButtonText.setVisibility(View.VISIBLE);
-            verifiytext.setVisibility(View.VISIBLE);
-        }
-        else {
-            verifymessage.setVisibility(View.GONE);
-            verifiyButtonText.setVisibility(View.GONE);
-            verifiytext.setVisibility(View.GONE);
-        }
-
-        if(mAuth.getCurrentUser()!=null){
-            if (FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
-                startActivity(new Intent(MainActivity.this, nav.class));
-                finish();
-            }else {
-                Toast.makeText(MainActivity.this, "User Is not Verifyd!!!", Toast.LENGTH_SHORT).show();
-                verifymessage.setVisibility(View.VISIBLE);
-                verifiyButtonText.setVisibility(View.VISIBLE);
-                verifiytext.setVisibility(View.VISIBLE);
-            }
-        }
-
-        forgotpassjava.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                LayoutInflater inflater = MainActivity.this.getLayoutInflater();
-                View view1 = inflater.inflate(R.layout.forgotpassword,null);
-                EditText editmail = view1.findViewById(R.id.editemail);
-                editmail.setText(emailloginjava.getText().toString());
-                builder.setView(view1).setPositiveButton("reset", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if(editmail.getText().toString().isEmpty()){
-                            Toast.makeText(MainActivity.this,"Please enter email", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            mAuth.sendPasswordResetEmail(editmail.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(MainActivity.this, "Password reset link sent to your email account", Toast.LENGTH_LONG).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(MainActivity.this, "Somthin went wrong! " + e.getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        }
-                    }
-                }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
-
-        verifiyButtonText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "mail has been sent to your account", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-            }
-        });
-
-        //login to home
-        gohomejava.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //for keybord Hide
-                emailloginjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
-                passwordloginjava.onEditorAction(EditorInfo.IME_ACTION_DONE);
-
-                String emailLjava = emailloginjava.getText().toString();
-                String passwordLjava = passwordloginjava.getText().toString();
-                if (TextUtils.isEmpty(emailLjava)||TextUtils.isEmpty(passwordLjava)){
-                    Toast.makeText(MainActivity.this,"fill details",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    bar.setVisibility(View.VISIBLE);
-                    loginAuth(emailLjava,passwordLjava);
-                }
-            }
-        });
-
-
-        //login to regitration
-        logintosignupjava.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, registrationpage.class));
+            public void run() {
+                startActivity(new Intent(MainActivity.this, loginactivity.class));
                 finish();
             }
-        });
-    }
-
-    private void loginAuth(String emailLjava1, String passwordLjava1) {
-        mAuth.signInWithEmailAndPassword(emailLjava1,passwordLjava1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    if (FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
-                        Toast.makeText(MainActivity.this, "Authentication success..", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(MainActivity.this, nav.class));
-                        bar.setVisibility(View.INVISIBLE);
-                        verifymessage.setVisibility(View.GONE);
-                        verifiyButtonText.setVisibility(View.GONE);
-                        verifiytext.setVisibility(View.GONE);
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(MainActivity.this, "User Is not Verify!!!", Toast.LENGTH_LONG).show();
-                        bar.setVisibility(View.INVISIBLE);
-                        verifymessage.setVisibility(View.VISIBLE);
-                        verifiyButtonText.setVisibility(View.VISIBLE);
-                        verifiytext.setVisibility(View.VISIBLE);
-                    }
-                }
-                else {
-                    Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    bar.setVisibility(View.INVISIBLE);
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
-                bar.setVisibility(View.INVISIBLE);
-            }
-        });
+        },Splash_screen);
     }
 }
